@@ -1,0 +1,13 @@
+kind: LocalConfig
+apiversion: odo.openshift.io/v1alpha1
+ComponentSettings:
+  Type: java:11
+  SourceLocation: ./
+  SourceType: local
+  Ports:
+  - 8778/TCP
+  - 8080/TCP
+  - 8443/TCP
+  Application: simplebankapp
+  Project: bankend
+  Name: backend
