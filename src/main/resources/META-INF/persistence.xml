@@ -8,7 +8,9 @@
         <class>be.intecbrussel.entity.Client</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bank_db?serverTimezone=UTC" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://mywebbankapp-8080-mywebbankapp-mywebbankapp.apps.ca-central-1.starter.openshift-online.com/bank_db?serverTimezone=UTC" />
+<!--            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bank_db?serverTimezone=UTC" />-->
+
             <property name="javax.persistence.jdbc.user" value="root" />
             <property name="javax.persistence.jdbc.password" value="bbg402_BBG" />
 

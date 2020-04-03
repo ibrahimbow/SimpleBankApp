@@ -16,7 +16,7 @@ public class Account {
     @Column(name = "account_number")
     private int account_number;
 
-    @Column(name = "current_balance")
+    @Column(name = "current_balance",updatable = true)
     private double current_balance;
 
 
@@ -25,7 +25,7 @@ public class Account {
 
 
 
-    @OneToMany(mappedBy="account",cascade=CascadeType.ALL)
+    @OneToMany(mappedBy="account", cascade=CascadeType.ALL, orphanRemoval = true)
     private List<Transaction> transactionArrayList = new ArrayList<>();
 
     public List<Transaction> getTransactionArrayList() {

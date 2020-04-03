@@ -29,7 +29,7 @@ public class Client {
     private String password;
 
 
-    @OneToMany(mappedBy="client",cascade=CascadeType.ALL)
+    @OneToMany(mappedBy="client",cascade=CascadeType.ALL ,orphanRemoval = true)
     private List<Account> accountList = new ArrayList<>();
 
     @OneToMany(mappedBy="client_log",cascade=CascadeType.ALL)

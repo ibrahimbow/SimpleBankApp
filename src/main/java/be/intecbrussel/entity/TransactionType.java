@@ -14,7 +14,7 @@ public class TransactionType {
     private String transactionType;
 
 
-    @OneToMany(mappedBy="transactionType",cascade=CascadeType.ALL)
+    @OneToMany(mappedBy="transactionType",cascade=CascadeType.ALL ,orphanRemoval = true)
     private List<Transaction> transactionArrayList = new ArrayList<>();
 
     public List<Transaction> getTransactionArrayList() {

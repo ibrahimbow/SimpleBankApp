@@ -25,6 +25,9 @@ import java.util.List;
 
 public class MyController {
 
+    private static EntityManagerFactory ENTITY_MANAGER_FACTORY
+            = Persistence.createEntityManagerFactory("bank_accounts");
+
     private  Client client = new Client();
     private  Account account ;
 
@@ -38,11 +41,8 @@ public class MyController {
     }
 
     public MyController() {
-
     }
 
-    private static EntityManagerFactory ENTITY_MANAGER_FACTORY
-            = Persistence.createEntityManagerFactory("bank_accounts");
 
     public void showAll (){
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
