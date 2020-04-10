@@ -1,9 +1,12 @@
 package be.intecbrussel.entity;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="clients")
@@ -13,19 +16,24 @@ public class Client {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id_client;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false , unique = true)
+    @NotNull
     private String username;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name" , nullable = false)
+    @NotNull
     private String first_name;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name" , nullable = false)
+    @NotNull
     private String last_name;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false , unique = true)
+    @NotNull
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password" , nullable = false)
+    @NotNull
     private String password;
 
 
@@ -35,6 +43,13 @@ public class Client {
     @OneToMany(mappedBy="client_log",cascade=CascadeType.ALL)
     private List<LogFile> logFileArrayList = new ArrayList<>();
 
+    public List<LogFile> getLogFileArrayList() {
+        return logFileArrayList;
+    }
+
+    public void setLogFileArrayList(List<LogFile> logFileArrayList) {
+        this.logFileArrayList = logFileArrayList;
+    }
 
     public List<Account> getAccountList() {
         return accountList;
@@ -96,9 +111,19 @@ public class Client {
         this.password = password;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Client)) return false;
+        Client client = (Client) o;
+        return getUsername().equals(client.getUsername()) &&
+                getEmail().equals(client.getEmail());
+    }
 
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUsername(), getEmail());
+    }
 
     @Override
     public String toString() {

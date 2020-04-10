@@ -13,7 +13,7 @@ public class Account {
     @GeneratedValue
     private int id_account;
 
-    @Column(name = "account_number")
+    @Column(name = "account_number" , nullable = false,unique = true)
     private int account_number;
 
     @Column(name = "current_balance",updatable = true)
@@ -26,13 +26,13 @@ public class Account {
 
 
     @OneToMany(mappedBy="account", cascade=CascadeType.ALL, orphanRemoval = true)
-    private List<Transaction> transactionArrayList = new ArrayList<>();
+    private List<TransactionsLog> transactionArrayList = new ArrayList<>();
 
-    public List<Transaction> getTransactionArrayList() {
+    public List<TransactionsLog> getTransactionArrayList() {
         return transactionArrayList;
     }
 
-    public void setTransactionArrayList(List<Transaction> transactionArrayList) {
+    public void setTransactionArrayList(List<TransactionsLog> transactionArrayList) {
         this.transactionArrayList = transactionArrayList;
     }
 

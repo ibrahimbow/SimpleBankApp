@@ -3,14 +3,12 @@ package be.intecbrussel.controller;
 import be.intecbrussel.custom_exception.BankTransactionException;
 import be.intecbrussel.entity.Account;
 import be.intecbrussel.entity.Client;
-import be.intecbrussel.entity.Transaction;
+import be.intecbrussel.entity.TransactionsLog;
 import be.intecbrussel.entity.TransactionType;
 import be.intecbrussel.service.GenerateAccountNumber;
 import be.intecbrussel.service.GenerateAmount;
-import com.mysql.cj.Session;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.List;
 
 // TODO: 3/29/2020
@@ -160,8 +158,8 @@ public class MyController_Backup {
         return transactionType;
     }
 
-    private Transaction setTransaction(double money, Account bankAccount,TransactionType transactionType){
-        Transaction transaction = new Transaction();
+    private TransactionsLog setTransaction(double money, Account bankAccount, TransactionType transactionType){
+        TransactionsLog transaction = new TransactionsLog();
 
         transaction.setTransaction_amount(money);
         transaction.setTransaction_date_time(transaction.getTransaction_date_time());
@@ -310,7 +308,7 @@ public class MyController_Backup {
     public Account findById(int bankAccountNumber) {
         EntityManager ENTITY_MGR = ENTITY_MANAGER_FACTORY.createEntityManager();
         String sqlQueryTransfer = "select a from Account as a " +
-                "left outer join Transaction c " +
+                "left outer join TransactionsLog c " +
                 "on c.account.id_account = a.id_account " +
                 "left outer join TransactionType tt " +
                 "on c.transactionType.id_transactionType = tt.id_transactionType" +
@@ -341,7 +339,7 @@ public class MyController_Backup {
     public Account findByBankAccountNumber(int bankAccountNumber){
         EntityManager ENTITY_MGR = ENTITY_MANAGER_FACTORY.createEntityManager();
     String sqlQueryTransfer = "select a from Account as a " +
-            "left outer join Transaction c " +
+            "left outer join TransactionsLog c " +
             "on c.account.id_account = a.id_account " +
             "left outer join TransactionType tt " +
             "on c.transactionType.id_transactionType = tt.id_transactionType" +
@@ -434,16 +432,16 @@ public class MyController_Backup {
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction et = em.getTransaction();
             et.begin();
-            String sqlQueryShowTransactions = "SELECT t FROM Transaction as t " +
+            String sqlQueryShowTransactions = "SELECT t FROM TransactionsLog as t " +
                     "join Account as a" +
                     " on t.account.id_account = a.id_account" +
                     "            join TransactionType as tt" +
                     "            on t.transactionType.id_transactionType = tt.id_transactionType" +
                     "            where t.account.id_account = :id_Account";
-            TypedQuery<Transaction> transactionTypedQuery =
-                    em.createQuery(sqlQueryShowTransactions,Transaction.class);
+            TypedQuery<TransactionsLog> transactionTypedQuery =
+                    em.createQuery(sqlQueryShowTransactions, TransactionsLog.class);
             transactionTypedQuery.setParameter("id_Account",account_id);
-            List<Transaction> messagesResult = transactionTypedQuery.getResultList();
+            List<TransactionsLog> messagesResult = transactionTypedQuery.getResultList();
             messagesResult.forEach(System.out::println);
             et.commit();
             em.close();

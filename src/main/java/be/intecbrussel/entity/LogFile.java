@@ -2,8 +2,7 @@ package be.intecbrussel.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name ="logs")
@@ -14,7 +13,7 @@ public class LogFile {
     private int id_log;
 
     @Column (name ="log_date_time")
-    private LocalDate date;
+    private LocalDateTime dateTime;
 
     @ManyToOne (cascade=CascadeType.ALL)
     private Client client_log ;
@@ -27,12 +26,12 @@ public class LogFile {
         this.id_log = id_log;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     public Client getClient_log() {

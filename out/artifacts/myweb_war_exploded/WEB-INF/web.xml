@@ -39,13 +39,60 @@
 
 
     <servlet>
-        <servlet-name>Transfer</servlet-name>
+        <servlet-name>transfer</servlet-name>
         <servlet-class>be.intecbrussel.servlet.Transaction_servlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
-        <servlet-name>Transfer</servlet-name>
+        <servlet-name>transfer</servlet-name>
         <url-pattern>/transferMoney</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>adminDelete</servlet-name>
+        <servlet-class>be.intecbrussel.servlet.Delete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminDelete</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>adminCreate</servlet-name>
+        <servlet-class>be.intecbrussel.servlet.Create</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminCreate</servlet-name>
+        <url-pattern>/create</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>adminUpdate</servlet-name>
+        <servlet-class>be.intecbrussel.servlet.Update_Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminUpdate</servlet-name>
+        <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+
+
+<!--    <servlet>-->
+<!--        <servlet-name>adminUpdateSearch</servlet-name>-->
+<!--        <servlet-class>be.intecbrussel.servlet.Search</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>adminUpdateSearch</servlet-name>-->
+<!--        <url-pattern>/Search</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+
+<!--    <welcome-file-list>-->
+<!--        <welcome-file>index.jsp</welcome-file>-->
+<!--        <welcome-file>index.html</welcome-file>-->
+<!--        <welcome-file>test/index.html</welcome-file>-->
+<!--    </welcome-file-list>-->
 
 </web-app>

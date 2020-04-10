@@ -15,13 +15,13 @@ public class TransactionType {
 
 
     @OneToMany(mappedBy="transactionType",cascade=CascadeType.ALL ,orphanRemoval = true)
-    private List<Transaction> transactionArrayList = new ArrayList<>();
+    private List<TransactionsLog> transactionArrayList = new ArrayList<>();
 
-    public List<Transaction> getTransactionArrayList() {
+    public List<TransactionsLog> getTransactionArrayList() {
         return transactionArrayList;
     }
 
-    public void setTransactionArrayList(List<Transaction> transactionArrayList) {
+    public void setTransactionArrayList(List<TransactionsLog> transactionArrayList) {
         this.transactionArrayList = transactionArrayList;
     }
 

@@ -1,32 +1,61 @@
 package be.intecbrussel.application;
 
 import be.intecbrussel.controller.MyController;
-import be.intecbrussel.controller.MyController_Backup;
 import be.intecbrussel.custom_exception.BankTransactionException;
 import be.intecbrussel.dao_implementation.AdminDaoImpl;
 import be.intecbrussel.entity.Account;
-import be.intecbrussel.entity.Client;
-import be.intecbrussel.servlet.Transaction_servlet;
+import be.intecbrussel.entity.TransactionsLog;
+
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 
 public class MyApplication {
+
     public static void main(String[] args) throws BankTransactionException {
 
         AdminDaoImpl adminDao = new AdminDaoImpl();
         MyController m = new MyController();
-        Account account = m.findById(5775378);
-        System.out.println(account.getClient().getEmail());
+
+       // System.out.println(m.checkAdminUserName("as"));
+
+       
+
+//        TransactionsLog transaction = new TransactionsLog();
+//
+//        String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss";
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
+//        String formatDateTime = transaction.getTransaction_date_time().format(formatter);
+//
+//        System.out.println(formatDateTime);
+
+
+//        adminDao.delete(4);
+//        adminDao.delete(8);
+//        adminDao.delete(12);
+//
+//        m.add("q","q","qd","aaq","2q4asaser");
+
+
+        Account account = m.findByBankAccountNumber(6039569);
         account.getClient().setFirst_name("alolofi");
-        System.out.println(account.getClient().getEmail());
+        m.getAdminDao().update(account);
+
+
+
+//        adminDao.createNewAccount("","asd","sdsdfa","kpolk","adsdsdfad",123);
+
 
 //
-//        adminDao.update(account);
+
 //
-        System.out.println(adminDao.getById(1).getClient().getFirst_name() );
+//        System.out.println(adminDao.getById(1).getClient().getFirst_name() );
 //        System.out.println("----------");
 //
 //        adminDao.getAll().forEach(System.out::println);
 
-        adminDao.delete(6);
+//        adminDao.delete(6);
 //        System.out.println("///");
      //   adminDao.getAll().stream().map(account1 -> account.getClient().getFirst_name()+ " "+ account.getClient().getLast_name()).forEach(System.out::println);
 
@@ -92,5 +121,7 @@ public class MyApplication {
 //        //System.out.println(myController.checkIfBankAccountNumberIsExist(10));
 
 
+
     }
 }
+
