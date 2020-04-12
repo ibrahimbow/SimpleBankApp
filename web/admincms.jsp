@@ -70,13 +70,7 @@
                         </div>
                         <div class="group">
                             <label for="password_register" class="label">Password</label>
-                            <input id="password_register" type="password" class="input" data-type="password" name="password_register">
-                        </div>
-                        <div class="group" >
-                            <label for="confirm_password" class="label">Repeat Password</label>
-                            <input id="confirm_password" type="password" class="input" data-type="password" name="confirm_password"/>
-                            <%--                <span class="popuptext" id='messageTrue'> Match</span>--%>
-                            <%--                <span class="popuptext" id='messageFalse'> Not Match</span>--%>
+                            <input id="password_register"  class="input" data-type="password" name="password_register">
                         </div>
                         <div class="group">
                             <label for="email" class="label">Email Address</label>
