@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 
 @WebServlet(name = "Login")
@@ -27,8 +28,6 @@ public class Login extends HttpServlet {
         String username = request.getParameter("username");
         String pwd = request.getParameter("pwd");
 
-
-
             if (myController.checkForLoginAccount(username, pwd)!=null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("username",myController.checkForLoginAccount(username,pwd).getClient().getUsername());
@@ -43,9 +42,18 @@ public class Login extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("username",myController.checkForLoginAccountAdmin(username,pwd).getAdminUserName());
 
-                response.sendRedirect("adminCreate.jsp");
+                response.sendRedirect("admincms.jsp");
             }else {
-                response.sendRedirect("index.jsp");
+
+                    response.setContentType("text/html");
+                    response.setHeader("Cache-Control", "no-cache");
+                    response.setHeader("Pragma", "no-cache");
+                    response.setCharacterEncoding("UTF-8");
+
+                    PrintWriter outt = response.getWriter();
+                    outt.print("Its not exists");
+
+                    response.sendRedirect("index.jsp");
             }
 
     }

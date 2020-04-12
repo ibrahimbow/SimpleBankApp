@@ -5,7 +5,7 @@
 		var table1 = $(this).parent().parent().parent();
 		var table2 = $(this).parent().parent();
 		var verTable = $(table1).data('vertable')+"";
-		var column = $(this).data('column') + ""; 
+		var column = $(this).data('column') + "";
 
 		$(table2).find("."+column).addClass('hov-column-'+ verTable);
 		$(table1).find(".row100.head ."+column).addClass('hov-column-head-'+ verTable);
@@ -15,12 +15,12 @@
 		var table1 = $(this).parent().parent().parent();
 		var table2 = $(this).parent().parent();
 		var verTable = $(table1).data('vertable')+"";
-		var column = $(this).data('column') + ""; 
+		var column = $(this).data('column') + "";
 
 		$(table2).find("."+column).removeClass('hov-column-'+ verTable);
 		$(table1).find(".row100.head ."+column).removeClass('hov-column-head-'+ verTable);
 	});
-    
+
 
 })(jQuery);
 
@@ -91,22 +91,22 @@ function checkusername() {
 		return true;
 }
 
-// function checkMyFormEmpty() {
-// 	// var usr = document.getElementById("result").value;
-// 	// var email =  document.getElementById("result1").value;
-// 		if (document.getElementById("username").value === ""&&
-// 			document.getElementById("lname").value === "" &&
-// 			document.getElementById("fname").value === "" &&
-// 			document.getElementById("password_register").value === "" &&
-// 			document.getElementById("confirm_password").value === "" &&
-// 			document.getElementById("email").value === "") {
-// 			swal("Empty failed");
-// 			return false;
-// 		}else{
-// 			congrates();
-// 			return true;
-// 		}
-// 	}
+function checkMyFormEmpty() {
+	// var usr = document.getElementById("result").value;
+	// var email =  document.getElementById("result1").value;
+		if (document.getElementById("username").value === ""&&
+			document.getElementById("lname").value === "" &&
+			document.getElementById("fname").value === "" &&
+			document.getElementById("password_register").value === "" &&
+			document.getElementById("confirm_password").value === "" &&
+			document.getElementById("email").value === "") {
+			swal("Empty failed");
+			return false;
+		}else{
+			congrates();
+			return true;
+		}
+	}
 
 
 function congrates() {
@@ -119,19 +119,19 @@ function congrates() {
 
 	}
 
-var check_PWD = function() {
-		if (document.getElementById('password_register').value ===
-			document.getElementById('confirm_password').value) {
-			document.getElementById('messageTrue').style.color = 'green';
-			var popup =  document.getElementById('messageTrue');
-			popup.classList.toggle("show");
-
-		} else {
-			document.getElementById('messageFalse').style.color = 'red';
-			var popup1 = document.getElementById('messageFalse');
-			popup1.classList.toggle("show");
-		}
-	}
+// var check_PWD = function() {
+// 		if (document.getElementById('password_register').value ===
+// 			document.getElementById('confirm_password').value) {
+// 			document.getElementById('messageTrue').style.color = 'green';
+// 			var popup =  document.getElementById('messageTrue');
+// 			popup.classList.toggle("show");
+//
+// 		} else {
+// 			document.getElementById('messageFalse').style.color = 'red';
+// 			var popup1 = document.getElementById('messageFalse');
+// 			popup1.classList.toggle("show");
+// 		}
+// 	}
 
 
 function checkAccountNumber() {
@@ -200,25 +200,90 @@ function checkAmount() {
 
 }
 
+// Create clients
+function create_new_client() {
+	var userNameUpdate = document.getElementById("myuser").value;
+	var firstNameUpdate = document.getElementById("fname").value;
+	var lastNameUpdate = document.getElementById("lname").value;
+	var passwordUpdate = document.getElementById("password_register").value;
+	var emailUpdate = document.getElementById("email").value;
+	var amountUpdate = document.getElementById("amountCreate").value;
 
-function clearAfterUpdate() {
+	var http = new XMLHttpRequest();
+	//
+	http.onreadystatechange = function() {
+		if (http.readyState === 4 || http.status === 200) {
+			//
+		}
+	};
 
-	var res = document.getElementById("number1").value;
+	if(document.getElementById("myuser").value !== ""){
+		http.open('POST', 'create_client', true);
+		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		http.send("myuser="+userNameUpdate+
+			"&fname="+firstNameUpdate+
+			"&lname="+lastNameUpdate+
+			"&password_register="+passwordUpdate+
+			"&email="+emailUpdate+
+			"&amountCreate="+amountUpdate);
+
+		http.onload = function () {
+			var s = http.responseText.trim();
+			if(s === '' || s===null){
+				swal("Not Created");
+			}else{
+				congrates();
+				document.getElementById("myuser").value='';
+				document.getElementById("fname"). value='';
+				document.getElementById("lname"). value='';
+				document.getElementById("password_register"). value='';
+				document.getElementById("email"). value='';
+				document.getElementById("amountCreate"). value='';
+			}
+		};
+		return false;
+	}
+	return true;
+
+}
+// update and delete
+function update_delete_client() {
+
+	var accountNumber = document.getElementById("number1").value;
+	var userNameUpdate = document.getElementById("username_Update").value;
+	var firstNameUpdate = document.getElementById("fnameUpdate").value;
+	var lastNameUpdate = document.getElementById("lnameUpdate").value;
+	var passwordUpdate = document.getElementById("pass1Update").value;
+	var emailUpdate = document.getElementById("emailUpdate").value;
+	var amountUpdate = document.getElementById("amountUpdate").value;
+
+	var http = new XMLHttpRequest();
+	//
+	http.onreadystatechange = function() {
+		if (http.readyState === 4 || http.status === 200) {
+			//
+			}
+		};
 
 	if(document.getElementById("number1").value !== ""){
-		var http = new XMLHttpRequest();
-		http.open("POST", "http://localhost:8090/myweb_war_exploded/updateCode.jsp", true);
+		http.open('POST', 'updateServlet', true);
 		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		var paramz = "param4=" + res;
-		http.send(paramz);
+		http.send("accountNumber="+accountNumber+
+			"&username="+userNameUpdate+
+			"&firstName="+firstNameUpdate+
+			"&lastName="+lastNameUpdate+
+			"&password="+passwordUpdate+
+			"&email="+emailUpdate+
+			"&amountUpdate="+amountUpdate);
+
 		http.onload = function () {
 			var s = http.responseText.trim();
 			if(s === '' || s===null){
 				swal("Not updated");
 			}else{
-				swal("Account  "+ res + " is " + s);
+				swal("Account No: "+ accountNumber + " is " + s);
 				document.getElementById("number1").value='';
-				document.getElementById("myuser").value='';
+				document.getElementById("username_Update").value='';
 				document.getElementById("fnameUpdate"). value='';
 				document.getElementById("lnameUpdate"). value='';
 				document.getElementById("pass1Update"). value='';
@@ -254,8 +319,8 @@ function manage(txt) {
 		} else{
 			bt.disabled = false;   // Enable the button.
 		}
-
 	}
+
 }
 
 //only except numbers
@@ -263,3 +328,7 @@ function isNumber(evt) {
 	var iKeyCode = (evt.which) ? evt.which : evt.keyCode
 	return !(iKeyCode !== 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57));
 }
+
+
+
+

@@ -20,6 +20,8 @@
             session.setAttribute("emailUpdate",myController.findByBankAccountNumber(search_BankAccount_for_update).getClient().getEmail());
             session.setAttribute("amountUpdate",myController.findByBankAccountNumber(search_BankAccount_for_update).getCurrent_balance());
 
+
+
         }else{
             response.setContentType("text/html");
             PrintWriter outt = response.getWriter();

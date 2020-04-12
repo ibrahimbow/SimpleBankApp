@@ -64,7 +64,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>adminCreate</servlet-name>
-        <url-pattern>/create</url-pattern>
+        <url-pattern>/create_client</url-pattern>
     </servlet-mapping>
 
 
@@ -75,7 +75,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>adminUpdate</servlet-name>
-        <url-pattern>/update</url-pattern>
+        <url-pattern>/updateServlet</url-pattern>
     </servlet-mapping>
 
 

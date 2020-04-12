@@ -9,57 +9,62 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.nio.channels.AcceptPendingException;
+import java.io.PrintWriter;
 
-@WebServlet(name = "Update")
+@WebServlet(name = "updateServlet")
 public class Update_Servlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+    public Update_Servlet() {
+        super();
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AdminDaoImpl adminDao = new AdminDaoImpl();
         MyController myController = new MyController();
-
-        String update_bankAccountNumber = request.getParameter("findBankAccountNumberUpdate");
-
-        int search_BankAccount_for_update = Integer.parseInt(update_bankAccountNumber);
-
-        String userName = request.getParameter("usernameUpdate1");
-        String firstName = request.getParameter("f_nameUpdate1");
-        String lastName = request.getParameter("l_nameUpdate1");
-        String pwd = request.getParameter("passwordUpdate1");
-        String email = request.getParameter("emailUpdate1");
-        String amountUpdate = request.getParameter("amountUpdate1");
+        try {
+        String update_bankAccountNumber = request.getParameter("accountNumber");
+        String userName = request.getParameter("username");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String pwd = request.getParameter("password");
+        String email = request.getParameter("email");
+        String amountUpdate = request.getParameter("amountUpdate");
         double updateBankAccount = Double.parseDouble(amountUpdate);
 
 
-        if (myController.findByBankAccountNumber(search_BankAccount_for_update)!=null) {
+            int search_BankAccount_for_update = Integer.parseInt(update_bankAccountNumber);
 
-            Account account = myController.findByBankAccountNumber(search_BankAccount_for_update);
+            if (myController.findByBankAccountNumber(search_BankAccount_for_update) != null) {
 
-            account.getClient().setUsername(userName);
-            account.getClient().setFirst_name(firstName);
-            account.getClient().setLast_name(lastName);
-            account.getClient().setPassword(pwd);
-            account.getClient().setEmail(email);
-            account.setCurrent_balance(updateBankAccount);
+                Account account = myController.findByBankAccountNumber(search_BankAccount_for_update);
 
-            adminDao.update(account);
+                account.getClient().setUsername(userName);
+                account.getClient().setFirst_name(firstName);
+                account.getClient().setLast_name(lastName);
+                account.getClient().setPassword(pwd);
+                account.getClient().setEmail(email);
+                account.setCurrent_balance(updateBankAccount);
 
-//            String empty = "";
-//            HttpSession session = request.getSession();
-//            session.setAttribute("usernameUpdate1", empty);
-//            session.setAttribute("f_nameUpdate1", empty);
-//            session.setAttribute("l_nameUpdate1", empty);
-//            session.setAttribute("passwordUpdate1", empty);
-//            session.setAttribute("emailUpdate1", empty);
-//            session.setAttribute("amountUpdate1", empty);
+                adminDao.update(account);
 
-            response.sendRedirect("adminUpdate.jsp");
+                response.setContentType("text/html");
+                response.setHeader("Cache-Control", "no-cache");
+                response.setHeader("Pragma", "no-cache");
+                response.setCharacterEncoding("UTF-8");
+
+                PrintWriter outt = response.getWriter();
+                outt.print("updated");
+
+            } else {
+                response.setContentType("text/html");
+                PrintWriter outt = response.getWriter();
+                outt.print("ok");
+
+            }
+        }catch (Exception e){
+            e.getMessage();
         }
-
     }
-
-
-
 }

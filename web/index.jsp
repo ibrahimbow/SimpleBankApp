@@ -13,6 +13,7 @@
 
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     <link rel="stylesheet" href="contents/css/style.css">
     <link rel="stylesheet" href="contents/css/style_popup.css">
     <link rel="stylesheet" href="contents/css/styleAnimation.css">
@@ -42,10 +43,7 @@
                         <label for="password" class="label">Password</label>
                         <input id="password" type="password" class="input" data-type="password" name="pwd">
                     </div>
-                    <div class="group">
-                        <input id="check" type="checkbox" class="check" checked>
-                        <label for="check"><span class="icon"></span></label>
-                    </div>
+
                     <div class="group">
                         <br>
                         <button type="submit" class="buttonClick button"  >LOG IN</button>

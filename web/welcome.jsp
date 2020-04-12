@@ -52,13 +52,17 @@
             response.sendRedirect("index.jsp");
         }
 
+
         MyController myController = new MyController();
-        int from_bankAccountNumber = (Integer) request.getSession().getAttribute("from_bankAccountNumber");
-        double current_Amount_D = (Double) request.getSession().getAttribute("amount");
-        // refresh the current amount when occur change in database
-        if (current_Amount_D != myController.findByBankAccountNumber(from_bankAccountNumber).getCurrent_balance()) {
-            session.setAttribute("amount", myController.findByBankAccountNumber(from_bankAccountNumber).getCurrent_balance());
-        }
+
+            int from_bankAccountNumber = (Integer) request.getSession().getAttribute("from_bankAccountNumber");
+            double current_Amount_D = (Double) request.getSession().getAttribute("amount");
+            // refresh the current amount when occur change in database
+
+            if (current_Amount_D != myController.findByBankAccountNumber(from_bankAccountNumber).getCurrent_balance()) {
+                session.setAttribute("amount", myController.findByBankAccountNumber(from_bankAccountNumber).getCurrent_balance());
+            }
+
     %>
 
     <%--  to update and reload the data from database  --%>
@@ -74,10 +78,9 @@
 </head>
 
 
-<div id="up" class="welcome-wrap" >
+<div id="up" class="login-wrap" >
     <center>
         <div class="login-html">
-
             <%--   this is to get the username from database via servlet also same as with amount--%>
             <div class="welcome"> WELCOME <br> <br> ${username} </div>
             <br><span> Your Account number : </span><div class="number"  id="ac"> ${from_bankAccountNumber} </div>  <br>
@@ -98,7 +101,6 @@
             <br>
             <div class="login-form">
                 <form action="transferMoney" method="post" name="sendMoney" onchange="manage(this)" onkeypress="return isNumber(event)">
-
                     <label for="amountx" class="label">Please enter the Amount</label>
                     <input id="amountx" type="text"  class="inputTransaction" name="money"
                     onchange=" checkAmount()">
@@ -117,9 +119,9 @@
                         <button type="submit" class="buttonTransaction"> Logout</button>
                     </div>
                 </form>
-
+                <div class="welcome1"><a href="#transferLog"> Transaction Logs </a> </div>
             </div>
-                <div class="welcome"><a href="#transferLog"> Transaction Logs </a> </div>
+
     </center>
 </div>
 
@@ -145,9 +147,11 @@
                     <tbody>
 
                     <%
+
                         String DATE_FORMATTER= "yyyy-MM-dd  HH:mm:ss";
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
                         List<TransactionsLog> pList = myController.showTransactionLog(myController.findByBankAccountNumber(from_bankAccountNumber).getId_account());
+
                         for (TransactionsLog transaction : pList) {
                             session.setAttribute("date_To", transaction.getTransaction_date_time().format(formatter));
                             session.setAttribute("accountNumber_To", transaction.getForm_TO_account_number());

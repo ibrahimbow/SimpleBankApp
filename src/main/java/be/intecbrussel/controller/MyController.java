@@ -88,7 +88,10 @@ public class MyController {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         String sqlQuery = "Select c from Account as c " +
                 "join Client as a " +
-                "on a.id_client = c.client.id_client where c.client.id_client = (select id_client from Client as c where c.username = :usr and c.password = :pwd)";
+                "on a.id_client = c.client.id_client " +
+                "where c.client.id_client = " +
+                    "(select id_client from Client as c " +
+                    "where c.username = :usr and c.password = :pwd)";
         TypedQuery<Account> typedQuery = entityManager.createQuery(sqlQuery, Account.class);
         typedQuery.setParameter("usr", usr);
         typedQuery.setParameter("pwd", pwd);

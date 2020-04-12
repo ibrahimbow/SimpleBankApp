@@ -9,24 +9,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet(name = "Create")
+@WebServlet(name = "create_client")
 public class Create extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String userName = request.getParameter("username");
+        MyController myController = new MyController();
+
+        String userName = request.getParameter("myuser");
         String firstName = request.getParameter("fname");
         String lastName = request.getParameter("lname");
-        String pwd = request.getParameter("password");
+        String pwd = request.getParameter("password_register");
         String email = request.getParameter("email");
-        String amount = request.getParameter("amount");
-        double newAmount = Double.parseDouble(amount);
+        String amount = request.getParameter("amountCreate");
 
-        MyController myController = new MyController();
-        myController.getAdminDao().createNewAccount(userName,firstName,lastName,email,pwd,newAmount);
+        try {
+            double newAmount = Double.parseDouble(amount);
 
-        response.sendRedirect("adminCreate.jsp");
+            if(myController.checkEmail(email)==null && myController.checkUserName(userName)==null){
 
+            myController.getAdminDao().createNewAccount(userName, firstName, lastName, email, pwd, newAmount);
+
+            response.setContentType("text/html");
+            response.setHeader("Cache-Control", "no-cache");
+            response.setHeader("Pragma", "no-cache");
+            response.setCharacterEncoding("UTF-8");
+
+            PrintWriter outt = response.getWriter();
+            outt.print("updated");
+
+        } else {
+            response.setContentType("text/html");
+            PrintWriter outt = response.getWriter();
+            outt.print("");
+
+        }
+
+
+
+
+        }catch (Exception e){
+            e.getMessage();
+        }
     }
 
 }

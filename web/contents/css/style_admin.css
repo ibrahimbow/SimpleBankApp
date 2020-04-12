@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,900|Montserrat|Roboto");
+
+body {
+	margin: 0;
+	color: #6a6f8c;
+	background: #c8c8c8;
+	font: 600 16px/18px 'Open Sans', sans-serif;
+}
+/*}*/
+/**,:after,:before{box-sizing:border-box}*/
+/*.clearfix:after,.clearfix:before{content:'';display:table}*/
+/*.clearfix:after{clear:both;display:block}*/
+/*a{color:inherit;text-decoration:none}*/
+
+.tabContainer {
+	width:100%;
+	height: 640px;
+	max-width:1000px;
+	margin:20px 100px 50px 100px;
+	background: #565b73;
+	border-radius:25px;
+	position: relative;
+	/*background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;*/
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
+
+.header-html{
+	width:100%;
+	height: 70px;
+	border-radius:25px;
+	background: #00183f;
+	/*background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;*/
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
+
+
+.left-html{
+	width:250px;
+	height: 520px;
+	float: left;
+	/*background: orange;*/
+	padding-bottom:5px;
+	padding-top: 10px;
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+
+}
+
+.right_content-html{
+	width:750px;
+	height: 510px;
+	float: left;
+	/*background: #0c5460;*/
+	padding-bottom:5px;
+	padding-top: 20px;
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+
+}
+
+
+
+
+
+
+
+
+
+/*==============================================end==================*/
+
+/*=========================================================================*/
+
+.title{
+	font-family: sans-serif;
+	color: #dc2d5e;
+	text-align: center;
+}
+/*.tabContainer{*/
+/*	width: 100%;*/
+/*	height: 350px;*/
+/*}*/
+.tabContainer .left-html .buttonContainer{
+	height: 15%;
+}
+.adminName {
+
+	font-size: 15px;
+	font-family: sans-serif;
+	text-align: right;
+	float: right;
+	align-content: center;
+	margin: 25px 150px 20px 20px;
+
+
+}
+.logoAdmin {
+
+	font-size: 15px;
+	font-family: sans-serif;
+	text-align: left;
+	float: left;
+	margin: 25px 20px 20px 100px;
+}
+
+.tabContainer .left-html .buttonContainer nav a{
+	list-style: none;
+	padding: 35px;
+	color: #FFFFFF;
+	/*font-size: 1.1em;*/
+	font-size: 15px;
+	font-family: sans-serif;
+	align-content: center;
+	display: block;
+	transition: all .3s ease-in-out;
+}
+.tabContainer .left-html .buttonContainer nav a:hover {
+	color: #3FB6A8;
+	transform: scale(1.1);
+	cursor: pointer;
+
+}
+.tabContainer .left-html .buttonContainer nav a:first-child {
+	margin-top: 7px;
+}
+
+.tabContainer .right_content-html .tabPanel{
+	height: 85%;
+	background-color: gray;
+	color: white;
+	text-align: center;
+	padding-top: 105px;
+	box-sizing: border-box;
+	font-family: sans-serif;
+	font-size: 22px;
+	display: none;
+}

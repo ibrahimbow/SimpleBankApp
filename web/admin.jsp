@@ -15,8 +15,10 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="contents/css/style.css">
-    <link rel="stylesheet" href="../css/styleAnimation.css">
-    <link rel="stylesheet" href="../css/styleAnimation.css">
+    <link rel="stylesheet" href="contents/css/style_popup.css">
+    <link rel="stylesheet" href="contents/css/styleAnimation.css">
+    <link rel="stylesheet" href="contents/css/styleAnimation.css">
+
     <title>Welcome to Administration</title>
     <%-- This to clear the cashe  after the user logoff--%>
     <%
@@ -60,62 +62,13 @@
 
 
 
-    <div class="login-wrap" >
-        <div class="login-html">
-            <div class="admin-html">
-                <input id="tab-1" type="radio" name="tab" class="create"><label for="tab-1" class="tab ">CREATE</label>
-                <input id="tab-2" type="radio" name="tab" class="update"><label for="tab-2" class="tab">update</label>
-                <input id="tab-3" type="radio" name="tab" class="delete"><label for="tab-3" class="tab ">delete</label>
-
-                <div class="admin-form">
-
-                    <%-- Create section >--%>
-                    <form action="create" method="post" >
-                        <div class="create-htm" class="animated infinite pulse delay-3s">
-                            <div class="group">
-                                <label for="user" class="label">Username</label>
-                                <input id="user" type="text" class="input" name="username">
-                            </div>
-                            <div class="group">
-                                <label for="fname" class="label">First Name</label>
-                                <input id="fname" type="text" class="input" name="fname" >
-                            </div>
-                            <div class="group" class="fadeInRightBig">
-                                <label for="lname" class="label">Last Name</label>
-                                <input id="lname" type="text" class="input" name="lname" >
-                            </div>
-
-                            <div class="group">
-                                <label for="pass1" class="label">Password</label>
-                                <input id="pass1" type="password" class="input" data-type="double" name="password" >
-                            </div>
-                            <div class="group">
-                                <label for="email" class="label">Email Address</label>
-                                <input id="email" type="text"  placeholder="user@example.com"class="input" name="email">
-                            </div>
-                            <div class="group">
-                                <label for="amount" class="label">Amount</label>
-                                <input id="amount" type="text" class="input" data-type="float" name="amount">
-                            </div>
-                            <div class="group">
-                                <input type="submit" class="button" value="create" >
-                            </div>
-                            <div class="hr"></div>
-                            <div class="foot-lnk">
-                                <%--                <label for="tab-1">Already Member?</label>--%>
-                            </div>
-                        </div>
-                    </form>
-
 
                     <%-- Update section >--%>
 
 
 
-
-
                         <form >
-                            <div class="update-htm">
+                            <div class="sign-in-htm">
 <%--                                <form name="updateuser"  onkeypress="return isNumber(event)">--%>
                                     <div class="update-htm" style="height: 20px;">
                                         <input id="number1" type="text" name="findBankAccountNumberUpdate" class="inputUpdate"
@@ -168,7 +121,7 @@
                                     <input id="amountUpdate" type="text" class="input" data-type="float" name="amountUpdate1" value="${amountUpdate}">
                                 </div>
                                 </div>
-                                <input type="submit" class="button" value="update" onclick="return clearAfterUpdate()">
+                                <input type="submit" class="button" value="update" onclick="return update_delete_client()">
                                 <div class="hr"></div>
                                 <div class="foot-lnk">
                                     <%--                <label for="tab-1">Already Member?</label>--%>
@@ -176,25 +129,6 @@
                             </div>
                         </form>
 
-
-                    <%-- Delete section >--%>
-                    <form action="delete" method="get">
-                        <div class="delete-htm">
-                            <div class="group">
-                                <label for="bankAccountNumberDelete" class="label">Bank Account Number :</label>
-                                <input id="bankAccountNumberDelete" type="text" class="input" name="findBankAccountNumberToDeleteIt">
-                                your account is <h2 class="animated bounceInDown delay-3s"> ${deleted}</h2>
-                            </div>
-                            <div class="button"><input type="submit" value="Delete"></div>
-                        </div>
-
-                    </form>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
 
     <form action="logout">
         <input type="submit" value="Logout">
