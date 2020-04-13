@@ -24,7 +24,7 @@
 
 })(jQuery);
 
-
+// check in database if there is the same email as the client wants to register in order to avoid duplicates
 function checkemail() {
 	var e = document.forms["myform"]["email"].value;
 	if(document.getElementById("email").value !== ""){
@@ -44,6 +44,7 @@ function checkemail() {
 	return true;
 }
 
+// check in database if there is the same admin username as the client wants to register in order to avoid duplicates
 function checkUserNameLogin() {
 	var n = document.forms["loginId"]["loginUser"].value;
 	// var n = document.getElementById("myuser1")
@@ -66,7 +67,7 @@ function checkUserNameLogin() {
 	return true;
 }
 
-
+// check in database if there is the same username as the client wants to register in order to avoid duplicates
 function checkusername() {
 	// var n = document.forms["myform"]["myuser"].value;
 	var n = document.getElementById("myuser").value;
@@ -88,7 +89,7 @@ function checkusername() {
 	}
 }
 
-
+// check the fields which are empty because its not allowed all information is
 function checkMyFormEmpty() {
 
 	if (document.getElementById("myuser").value === ""&&
@@ -118,8 +119,6 @@ function congratesRegister() {
 	});
 }
 
-
-
 // this alert for admin when he/she creates new client
 function congratesNewClient() {
 	swal({
@@ -145,7 +144,7 @@ function congratesNewClient() {
 // 		}
 // 	}
 
-
+// check if the account number is existed or not in case we need to update and delete the clients
 function checkAccountNumber() {
 	var e = document.forms["sendMoney"]["number"].value;
 	if(document.getElementById("number").value !== ""){
@@ -170,6 +169,8 @@ function checkAccountNumber() {
 	return true;
 }
 
+// search for the account number of the client
+// and return the information of the client and fill it in right the fields
 function searchAccountNumber() {
 	// var res = document.forms["updateuser"]["number1"].value;
 	var res = document.getElementById("number1").value;
@@ -263,11 +264,11 @@ function create_new_client() {
 	return true;
 }
 
-// Register New Client
-//
+
 /**
  * @return {boolean}
  */
+// Register New Client
 function Register_new_client() {
 
 	var userNameReg = document.getElementById("myuser").value;
@@ -401,39 +402,39 @@ function delete_client() {
 	})
 		.then((willDelete) => {
 			if (willDelete) {
-				 if (document.getElementById("number1").value !== "") {
-					 http.open('POST', 'delete_client', true);
-					 http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					 http.send("accountNumber=" + accountNumber +
-						 "&username=" + userNameUpdate +
-						 "&firstName=" + firstNameUpdate +
-						 "&lastName=" + lastNameUpdate +
-						 "&password=" + passwordUpdate +
-						 "&email=" + emailUpdate +
-						 "&amountUpdate=" + amountUpdate);
+				if (document.getElementById("number1").value !== "") {
+					http.open('POST', 'delete_client', true);
+					http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					http.send("accountNumber=" + accountNumber +
+						"&username=" + userNameUpdate +
+						"&firstName=" + firstNameUpdate +
+						"&lastName=" + lastNameUpdate +
+						"&password=" + passwordUpdate +
+						"&email=" + emailUpdate +
+						"&amountUpdate=" + amountUpdate);
 
-					 http.onload = function () {
-						 var s = http.responseText.trim();
-						 if (s === '' || s === null) {
-							 // swal("Not updated");
-						 } else {
-							 // swal("Client is Deleted");
-							 document.getElementById("number1").value = '';
-							 document.getElementById("username_Update").value = '';
-							 document.getElementById("fnameUpdate").value = '';
-							 document.getElementById("lnameUpdate").value = '';
-							 document.getElementById("pass1Update").value = '';
-							 document.getElementById("emailUpdate").value = '';
-							 document.getElementById("amountUpdate").value = '';
-						 }
-					 };
-					 swal("Your client is Deleted ...!", {
-						 icon: "success",
-					 });
-					 return true
-				 }else{
-					 swal("Client is Not Exists");
-				 }
+					http.onload = function () {
+						var s = http.responseText.trim();
+						if (s === '' || s === null) {
+							// swal("Not updated");
+						} else {
+							// swal("Client is Deleted");
+							document.getElementById("number1").value = '';
+							document.getElementById("username_Update").value = '';
+							document.getElementById("fnameUpdate").value = '';
+							document.getElementById("lnameUpdate").value = '';
+							document.getElementById("pass1Update").value = '';
+							document.getElementById("emailUpdate").value = '';
+							document.getElementById("amountUpdate").value = '';
+						}
+					};
+					swal("Your client is Deleted ...!", {
+						icon: "success",
+					});
+					return true
+				}else{
+					swal("Client is Not Exists");
+				}
 			} else {
 				swal("Your Client is still alive ;)-");
 				return false;
@@ -443,36 +444,36 @@ function delete_client() {
 }
 
 
-			/*// When the user clicks on div, open the popup*/
-			function myFunctionPopup() {
-				var popup = document.getElementById("myPopup");
-				popup.classList.toggle("show");
-			}
+/*// When the user clicks on div, open the popup*/
+function myFunctionPopup() {
+	var popup = document.getElementById("myPopup");
+	popup.classList.toggle("show");
+}
 
 
 // disable button if the text is empty
-			function manage(txt) {
-				var bt = document.getElementById('submit');
-				var ele = document.getElementsByTagName('input');
-				// LOOP THROUGH EACH ELEMENT.
+function manage(txt) {
+	var bt = document.getElementById('submit');
+	var ele = document.getElementsByTagName('input');
+	// LOOP THROUGH EACH ELEMENT.
 
-				for (var i = 0; i < ele.length; i++) {
-					// CHECK THE ELEMENT TYPE.
-					if (ele[i].type === 'text' && ele[i].value === '') {
-						bt.disabled = true;    // Disable the button.
-						return false;
-					} else{
-						bt.disabled = false;   // Enable the button.
-					}
-				}
+	for (var i = 0; i < ele.length; i++) {
+		// CHECK THE ELEMENT TYPE.
+		if (ele[i].type === 'text' && ele[i].value === '') {
+			bt.disabled = true;    // Disable the button.
+			return false;
+		} else{
+			bt.disabled = false;   // Enable the button.
+		}
+	}
 
-			}
+}
 
 //only except numbers
-			function isNumber(evt) {
-				var iKeyCode = (evt.which) ? evt.which : evt.keyCode
-				return !(iKeyCode !== 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57));
-			}
+function isNumber(evt) {
+	var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+	return !(iKeyCode !== 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57));
+}
 
 
 
