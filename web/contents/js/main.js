@@ -66,6 +66,7 @@ function checkUserNameLogin() {
 	return true;
 }
 
+
 function checkusername() {
 	// var n = document.forms["myform"]["myuser"].value;
 	var n = document.getElementById("myuser").value;
@@ -102,6 +103,7 @@ function checkMyFormEmpty() {
 	}
 }
 
+
 // alert create new user
 function congratesRegister() {
 	swal({
@@ -114,29 +116,8 @@ function congratesRegister() {
 			window.location.href = `/welcome.jsp`
 		}
 	});
-	;
 }
 
-//alert delete client
-function alertDelete() {
-
-	swal({
-		title: "Are you sure?",
-		text: "Once deleted, you will not be able to recover this client!",
-		icon: "warning",
-		buttons: true,
-		dangerMode: true,
-	})
-		.then((willDelete) => {
-			if (willDelete) {
-				swal("Poof! Your imaginary file has been deleted!", {
-					icon: "success",
-				});
-			} else {
-				swal("Your imaginary file is safe!");
-			}
-		});
-}
 
 
 // this alert for admin when he/she creates new client
@@ -295,7 +276,7 @@ function Register_new_client() {
 	var passwordReg = document.getElementById("password_register").value;
 	var emailReg = document.getElementById("email").value;
 
-	// var checkEmailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+	var checkEmailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
 	var http = new XMLHttpRequest();
 	//
@@ -341,11 +322,8 @@ function Register_new_client() {
 	}
 }
 
-
-
-
-// update and delete
-function update_delete_client() {
+// update Clients
+function update_client() {
 
 	var accountNumber = document.getElementById("number1").value;
 	var userNameUpdate = document.getElementById("username_Update").value;
@@ -395,37 +373,106 @@ function update_delete_client() {
 
 }
 
+// Delete Clients
+function delete_client() {
 
-/*// When the user clicks on div, open the popup*/
-function myFunctionPopup() {
-	var popup = document.getElementById("myPopup");
-	popup.classList.toggle("show");
+	var accountNumber = document.getElementById("number1").value;
+	var userNameUpdate = document.getElementById("username_Update").value;
+	var firstNameUpdate = document.getElementById("fnameUpdate").value;
+	var lastNameUpdate = document.getElementById("lnameUpdate").value;
+	var passwordUpdate = document.getElementById("pass1Update").value;
+	var emailUpdate = document.getElementById("emailUpdate").value;
+	var amountUpdate = document.getElementById("amountUpdate").value;
+
+	var http = new XMLHttpRequest();
+	//
+	http.onreadystatechange = function() {
+		if (http.readyState === 4 || http.status === 200) {
+			//
+		}
+	};
+	// we user alert sweet to confirm before you delete the client
+	swal({
+		title: "Are you sure?",
+		text: "Once deleted, you will not be able to recover this Client ..!",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	})
+		.then((willDelete) => {
+			if (willDelete) {
+				 if (document.getElementById("number1").value !== "") {
+					 http.open('POST', 'delete_client', true);
+					 http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					 http.send("accountNumber=" + accountNumber +
+						 "&username=" + userNameUpdate +
+						 "&firstName=" + firstNameUpdate +
+						 "&lastName=" + lastNameUpdate +
+						 "&password=" + passwordUpdate +
+						 "&email=" + emailUpdate +
+						 "&amountUpdate=" + amountUpdate);
+
+					 http.onload = function () {
+						 var s = http.responseText.trim();
+						 if (s === '' || s === null) {
+							 // swal("Not updated");
+						 } else {
+							 // swal("Client is Deleted");
+							 document.getElementById("number1").value = '';
+							 document.getElementById("username_Update").value = '';
+							 document.getElementById("fnameUpdate").value = '';
+							 document.getElementById("lnameUpdate").value = '';
+							 document.getElementById("pass1Update").value = '';
+							 document.getElementById("emailUpdate").value = '';
+							 document.getElementById("amountUpdate").value = '';
+						 }
+					 };
+					 swal("Your client is Deleted ...!", {
+						 icon: "success",
+					 });
+					 return true
+				 }else{
+					 swal("Client is Not Exists");
+				 }
+			} else {
+				swal("Your Client is still alive ;)-");
+				return false;
+			}
+		});
+	return false;
 }
+
+
+			/*// When the user clicks on div, open the popup*/
+			function myFunctionPopup() {
+				var popup = document.getElementById("myPopup");
+				popup.classList.toggle("show");
+			}
 
 
 // disable button if the text is empty
-function manage(txt) {
-	var bt = document.getElementById('submit');
-	var ele = document.getElementsByTagName('input');
-	// LOOP THROUGH EACH ELEMENT.
+			function manage(txt) {
+				var bt = document.getElementById('submit');
+				var ele = document.getElementsByTagName('input');
+				// LOOP THROUGH EACH ELEMENT.
 
-	for (var i = 0; i < ele.length; i++) {
-		// CHECK THE ELEMENT TYPE.
-		if (ele[i].type === 'text' && ele[i].value === '') {
-			bt.disabled = true;    // Disable the button.
-			return false;
-		} else{
-			bt.disabled = false;   // Enable the button.
-		}
-	}
+				for (var i = 0; i < ele.length; i++) {
+					// CHECK THE ELEMENT TYPE.
+					if (ele[i].type === 'text' && ele[i].value === '') {
+						bt.disabled = true;    // Disable the button.
+						return false;
+					} else{
+						bt.disabled = false;   // Enable the button.
+					}
+				}
 
-}
+			}
 
 //only except numbers
-function isNumber(evt) {
-	var iKeyCode = (evt.which) ? evt.which : evt.keyCode
-	return !(iKeyCode !== 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57));
-}
+			function isNumber(evt) {
+				var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+				return !(iKeyCode !== 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57));
+			}
 
 
 

@@ -145,7 +145,9 @@
                             </div>
                         </div>
 
-                            <input type="submit" class="button" value="update" onclick=" return update_delete_client()">
+                            <input type="submit" class="button" value="update" onclick=" return update_client()">
+                    <br><br><br>
+                            <input type="submit" class="button" value="Delete"  onclick="return delete_client()">
                 </form>
 
             </div>

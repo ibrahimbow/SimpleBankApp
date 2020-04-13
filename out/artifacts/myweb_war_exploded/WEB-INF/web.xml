@@ -53,7 +53,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>adminDelete</servlet-name>
-        <url-pattern>/delete</url-pattern>
+        <url-pattern>/delete_client</url-pattern>
     </servlet-mapping>
 
 
