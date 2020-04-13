@@ -9,33 +9,46 @@ import javax.servlet.http.HttpServletResponse;
 import be.intecbrussel.controller.MyController;
 import java.io.PrintWriter;
 
-@WebServlet(name = "Register")
+@WebServlet(name = "register_client")
 public class Register extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
 
+        String userName = request.getParameter("myuser");
+        String firstName = request.getParameter("fname");
+        String lastName = request.getParameter("lname");
+        String pwd = request.getParameter("password_register");
+        String email = request.getParameter("email");
 
-            String userName = request.getParameter("username");
-            String firstName = request.getParameter("fname");
-            String lastName = request.getParameter("lname");
-            String pwd = request.getParameter("password_register");
-            String email = request.getParameter("email");
+        MyController myController = new MyController();
 
-            MyController myController = new MyController();
+        try{
+            if(myController.checkEmail(email)==null && myController.checkUserName(userName)==null) {
 
-
-
-        try {
                 myController.add(userName, firstName, lastName, email, pwd);
 
+                response.setContentType("text/html");
+                response.setHeader("Cache-Control", "no-cache");
+                response.setHeader("Pragma", "no-cache");
+                response.setCharacterEncoding("UTF-8");
+
+                PrintWriter outt = response.getWriter();
+                outt.print("created");
+
+
+                response.sendRedirect("welcome.jsp");
+
+            } else {
+                response.setContentType("text/html");
+                PrintWriter outt = response.getWriter();
+                outt.print("");
+            }
         } catch (Exception e) {
             e.getMessage();
         }
-
-        response.sendRedirect("index.jsp");
-
     }
+
 
 }

@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 
-<%--    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.10/css/all.css'>--%>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.10/css/all.css'>
 
 
 
@@ -51,7 +51,9 @@
 
         </div>
         <div class="right_content-html">
+<%--Clients Information Section--%>
             <div class="tabPanel">Tab 1:Content</div>
+<%-- Create New Client Section--%>
             <div class="tabPanel">Create
 
                 <form>
@@ -70,18 +72,18 @@
                         </div>
                         <div class="group">
                             <label for="password_register" class="label">Password</label>
-                            <input id="password_register"  class="input" data-type="password" name="password_register">
+                            <input id="password_register"  class="input"  name="password_register">
                         </div>
                         <div class="group">
                             <label for="email" class="label">Email Address</label>
-                            <input id="email" type="text" class="input" name="email" placeholder="email@email.com"
-                                   onchange="javascript:return checkemail()">
+                            <input id="email" type="email" class="input" name="email" placeholder="email@email.com"
+                                   onchange="javascript:return checkemail()" required />
                             <span id="result1" name="result1" ></span>
                         </div>
                         <div class="group">
                             <label for="amountCreate" class="label">Email Address</label>
                             <input id="amountCreate" type="text" class="input" name="amountCreateN" placeholder="0.0"
-                                   onchange="javascript:return checkemail()">
+                                   onkeypress="return isNumber(event)">
                         </div>
                         <br>
                         <div class="group">
@@ -91,7 +93,7 @@
                 </form>
 
             </div>
-
+<%--Edit and Delete Client Section--%>
             <div class="tabPanel">EDIT & DELETE
 
                 <form >
@@ -147,8 +149,9 @@
                 </form>
 
             </div>
-
+<%--Transaction section--%>
             <div class="tabPanel">Tab 4:Content</div>
+<%--Logs for Logins Section--%>
             <div class="tabPanel">Tab 5:Content</div>
 
         </div>
@@ -163,7 +166,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="alert/dist/sweetalert-dev.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<%--<script src="http://code.jquery.com/jquery-latest.js "></script>--%>
+<script src="http://code.jquery.com/jquery-latest.js "></script>
 
 
 

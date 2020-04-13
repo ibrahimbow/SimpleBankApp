@@ -69,55 +69,86 @@ function checkUserNameLogin() {
 function checkusername() {
 	// var n = document.forms["myform"]["myuser"].value;
 	var n = document.getElementById("myuser").value;
-	if(document.getElementById("myuser").value !== ""){
+	if (document.getElementById("myuser").value !== "") {
 
 		var http = new XMLHttpRequest();
 		http.open("POST", "http://localhost:8090/myweb_war_exploded/checkuser.jsp", true);
-		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		var params = "param2=" + n;
 		http.send(params);
-		http.onload = function() {
+		http.onload = function () {
 			var s = http.responseText.trim();
-			if(s === '' || s===null){
+			if (s === '' || s === null) {
 				//
-			}else {
+			} else {
 				swal("The client (" + n + ")  is Exists..!");
 			}
-
 		};
-
-		return false;
 	}
-		return true;
 }
 
+
 function checkMyFormEmpty() {
-	// var usr = document.getElementById("result").value;
-	// var email =  document.getElementById("result1").value;
-		if (document.getElementById("username").value === ""&&
-			document.getElementById("lname").value === "" &&
-			document.getElementById("fname").value === "" &&
-			document.getElementById("password_register").value === "" &&
-			document.getElementById("confirm_password").value === "" &&
-			document.getElementById("email").value === "") {
-			swal("Empty failed");
-			return false;
-		}else{
-			congrates();
-			return true;
+
+	if (document.getElementById("myuser").value === ""&&
+		document.getElementById("fname").value === "" &&
+		document.getElementById("lname").value === "" &&
+		document.getElementById("password_register").value === "" &&
+		document.getElementById("email").value === "") {
+		swal("Empty failed");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+// alert create new user
+function congratesRegister() {
+	swal({
+		title: "Good job!",
+		text: "Your account success created !",
+		icon: "success",
+		button: "YES!",
+	}).then((result) => {
+		if (result.value) {
+			window.location.href = `/welcome.jsp`
 		}
-	}
+	});
+	;
+}
 
+//alert delete client
+function alertDelete() {
 
-function congrates() {
-		swal({
-			title: "Good job!",
-			text: "you account success created !",
-			icon: "success",
-			button: "YES!",
+	swal({
+		title: "Are you sure?",
+		text: "Once deleted, you will not be able to recover this client!",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	})
+		.then((willDelete) => {
+			if (willDelete) {
+				swal("Poof! Your imaginary file has been deleted!", {
+					icon: "success",
+				});
+			} else {
+				swal("Your imaginary file is safe!");
+			}
 		});
+}
 
-	}
+
+// this alert for admin when he/she creates new client
+function congratesNewClient() {
+	swal({
+		title: "Good job!",
+		text: "Account success created !",
+		icon: "success",
+		button: "YES!",
+	});
+}
+
 
 // var check_PWD = function() {
 // 		if (document.getElementById('password_register').value ===
@@ -188,6 +219,7 @@ function searchAccountNumber() {
 	return true;
 }
 
+//check if it's not enough amount
 function checkAmount() {
 	var currentAmount = document.getElementById("currentmoney").value;
 	var transferAmount = document.getElementById("amountx").value;
@@ -200,8 +232,10 @@ function checkAmount() {
 
 }
 
-// Create clients
+// Create new clients
 function create_new_client() {
+
+
 	var userNameUpdate = document.getElementById("myuser").value;
 	var firstNameUpdate = document.getElementById("fname").value;
 	var lastNameUpdate = document.getElementById("lname").value;
@@ -210,42 +244,106 @@ function create_new_client() {
 	var amountUpdate = document.getElementById("amountCreate").value;
 
 	var http = new XMLHttpRequest();
-	//
-	http.onreadystatechange = function() {
+
+	http.onreadystatechange = function () {
 		if (http.readyState === 4 || http.status === 200) {
 			//
 		}
 	};
 
-	if(document.getElementById("myuser").value !== ""){
-		http.open('POST', 'create_client', true);
-		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		http.send("myuser="+userNameUpdate+
-			"&fname="+firstNameUpdate+
-			"&lname="+lastNameUpdate+
-			"&password_register="+passwordUpdate+
-			"&email="+emailUpdate+
-			"&amountCreate="+amountUpdate);
+	if(checkMyFormEmpty()) {
+		if (document.getElementById("myuser").value !== "") {
+			http.open('POST', 'create_client', true);
+			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			http.send("myuser=" + userNameUpdate +
+				"&fname=" + firstNameUpdate +
+				"&lname=" + lastNameUpdate +
+				"&password_register=" + passwordUpdate +
+				"&email=" + emailUpdate +
+				"&amountCreate=" + amountUpdate);
 
-		http.onload = function () {
-			var s = http.responseText.trim();
-			if(s === '' || s===null){
-				swal("Not Created");
-			}else{
-				congrates();
-				document.getElementById("myuser").value='';
-				document.getElementById("fname"). value='';
-				document.getElementById("lname"). value='';
-				document.getElementById("password_register"). value='';
-				document.getElementById("email"). value='';
-				document.getElementById("amountCreate"). value='';
-			}
-		};
-		return false;
+			http.onload = function () {
+				var s = http.responseText.trim();
+				if (s === '' || s === null) {
+					swal("Not Created");
+				} else {
+					congratesNewClient();
+					document.getElementById("myuser").value = '';
+					document.getElementById("fname").value = '';
+					document.getElementById("lname").value = '';
+					document.getElementById("password_register").value = '';
+					document.getElementById("email").value = '';
+					document.getElementById("amountCreate").value = '';
+				}
+			};
+			return false;
+		}
 	}
 	return true;
-
 }
+
+// Register New Client
+//
+/**
+ * @return {boolean}
+ */
+function Register_new_client() {
+
+	var userNameReg = document.getElementById("myuser").value;
+	var firstNameReg = document.getElementById("fname").value;
+	var lastNameReg = document.getElementById("lname").value;
+	var passwordReg = document.getElementById("password_register").value;
+	var emailReg = document.getElementById("email").value;
+
+	// var checkEmailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+	var http = new XMLHttpRequest();
+	//
+	http.onreadystatechange = function () {
+		if (http.readyState === 4 || http.status === 200) {
+			//
+		}
+	};
+
+	// It can not be registered if one of the fields is empty
+	if (userNameReg !== "" && firstNameReg!=="" && lastNameReg !=="" && passwordReg!=="" && emailReg!=="") {
+		if(!checkEmailReg.test(emailReg)) {
+			swal("please Type you email correctly..! ");
+			return false;
+		}else {
+			http.open('POST', 'register_client', true);
+			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			http.send("myuser=" + userNameReg +
+				"&fname=" + firstNameReg +
+				"&lname=" + lastNameReg +
+				"&password_register=" + passwordReg +
+				"&email=" + emailReg);
+
+			http.onload = function () {
+				var s = http.responseText.trim();
+				if (s === '' || s === null) {
+					swal("Not Created");
+				} else {
+					congratesRegister();
+					document.getElementById("myuser").value = '';
+					document.getElementById("fname").value = '';
+					document.getElementById("lname").value = '';
+					document.getElementById("password_register").value = '';
+					document.getElementById("email").value = '';
+					return true;
+				}
+			};
+			return false;
+		}
+	}else{
+		swal("Empty Fields..!");
+		return false;
+	}
+}
+
+
+
+
 // update and delete
 function update_delete_client() {
 
@@ -262,8 +360,8 @@ function update_delete_client() {
 	http.onreadystatechange = function() {
 		if (http.readyState === 4 || http.status === 200) {
 			//
-			}
-		};
+		}
+	};
 
 	if(document.getElementById("number1").value !== ""){
 		http.open('POST', 'updateServlet', true);
@@ -298,11 +396,11 @@ function update_delete_client() {
 }
 
 
-	{/*// When the user clicks on div, open the popup*/}
-	function myFunctionPopup() {
-		var popup = document.getElementById("myPopup");
-		popup.classList.toggle("show");
-	}
+/*// When the user clicks on div, open the popup*/
+function myFunctionPopup() {
+	var popup = document.getElementById("myPopup");
+	popup.classList.toggle("show");
+}
 
 
 // disable button if the text is empty

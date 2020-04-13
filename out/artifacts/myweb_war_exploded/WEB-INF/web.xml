@@ -34,7 +34,7 @@
 
     <servlet-mapping>
         <servlet-name>register</servlet-name>
-        <url-pattern>/register</url-pattern>
+        <url-pattern>/register_client</url-pattern>
     </servlet-mapping>
 
 

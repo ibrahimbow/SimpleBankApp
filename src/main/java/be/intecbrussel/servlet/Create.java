@@ -16,6 +16,11 @@ public class Create extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         MyController myController = new MyController();
+        // these parameter send from the javascript via  XMLHttpRequest send
+        // these parameters have values as text datatype because it comes from html text input
+
+        /* XMLHttpRequest is an API in the form of an object
+         whose methods transfer data between a web browser and a web server. */
 
         String userName = request.getParameter("myuser");
         String firstName = request.getParameter("fname");
@@ -24,31 +29,30 @@ public class Create extends HttpServlet {
         String email = request.getParameter("email");
         String amount = request.getParameter("amountCreate");
 
+
         try {
             double newAmount = Double.parseDouble(amount);
 
-            if(myController.checkEmail(email)==null && myController.checkUserName(userName)==null){
+            // This condition works only if the client want to register new account
 
-            myController.getAdminDao().createNewAccount(userName, firstName, lastName, email, pwd, newAmount);
+            if(myController.checkEmail(email)==null && myController.checkUserName(userName)==null) {
 
-            response.setContentType("text/html");
-            response.setHeader("Cache-Control", "no-cache");
-            response.setHeader("Pragma", "no-cache");
-            response.setCharacterEncoding("UTF-8");
+                    myController.getAdminDao().createNewAccount(userName, firstName, lastName, email, pwd, newAmount);
 
-            PrintWriter outt = response.getWriter();
-            outt.print("updated");
+                    response.setContentType("text/html");
+                    response.setHeader("Cache-Control", "no-cache");
+                    response.setHeader("Pragma", "no-cache");
+                    response.setCharacterEncoding("UTF-8");
 
-        } else {
-            response.setContentType("text/html");
-            PrintWriter outt = response.getWriter();
-            outt.print("");
-
-        }
+                    PrintWriter outt = response.getWriter();
+                    outt.print("created");
 
 
-
-
+            } else {
+                response.setContentType("text/html");
+                PrintWriter outt = response.getWriter();
+                outt.print("");
+            }
         }catch (Exception e){
             e.getMessage();
         }

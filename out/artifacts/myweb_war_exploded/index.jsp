@@ -55,43 +55,37 @@
                 </div>
          </form>
 
-         <form action="register" method="post" name="myform" >
-        <div class="sign-up-htm">
-            <div class="group">
-                <label for="myuser" class="label">Username</label>
-                <input id="myuser" type="text" class="input" name="username" onchange="javascript:return checkusername()">
-                <span id="result" name="result"></span>
-            </div>
-            <div class="group">
-                <label for="fname" class="label">First Name</label>
-                <input id="fname" type="text" class="input" name="fname">
-            </div>
-            <div class="group">
-                <label for="lname" class="label">Last Name</label>
-                <input id="lname" type="text" class="input" name="lname">
-            </div>
-            <div class="group">
-                <label for="password_register" class="label">Password</label>
-                <input id="password_register" type="password" class="input" data-type="password" name="password_register">
-            </div>
-            <div class="group" >
-                <label for="confirm_password" class="label">Repeat Password</label>
-                <input id="confirm_password" type="password" class="input" data-type="password" name="confirm_password"/>
-<%--                <span class="popuptext" id='messageTrue'> Match</span>--%>
-<%--                <span class="popuptext" id='messageFalse'> Not Match</span>--%>
-            </div>
-            <div class="group">
-                <label for="email" class="label">Email Address</label>
-                <input id="email" type="text" class="input" name="email" placeholder="email@email.com"
-                       onchange="javascript:return checkemail()">
-                <span id="result1" name="result1" ></span>
-            </div>
-            <br>
-            <div class="group">
-                <button type="submit" id="sumbit" class="buttonClick button" onclick="return checkMyFormEmpty()" >SIGN UP</button>
-            </div>
-        </div>
-    </form>
+                <form>
+                    <div class="sign-up-htm">
+                        <div class="group">
+                            <label for="myuser" class="label">Username</label>
+                            <input id="myuser" type="text" class="input" name="username"
+                                   onchange="javascript:return checkusername()" required  />
+                        </div>
+                        <div class="group">
+                            <label for="fname" class="label">First Name</label>
+                            <input id="fname" type="text" class="input" name="fname" required  />
+                        </div>
+                        <div class="group">
+                            <label for="lname" class="label">Last Name</label>
+                            <input id="lname" type="text" class="input" name="lname" required />
+                        </div>
+                        <div class="group">
+                            <label for="password_register" class="label">Password</label>
+                            <input id="password_register"  class="input"  name="password_register" required />
+                        </div>
+                        <div class="group">
+                            <label for="email" class="label">Email Address</label>
+                            <input id="email" type="email" class="input" name="email" placeholder="email@email.com"
+                                   onchange="return checkemail()" required />
+                        </div>
+
+                        <br>
+                        <div class="group">
+                            <input  id="registerId" type="submit" class="button" value="register" onclick=" return Register_new_client()" >
+                        </div>
+                    </div>
+                </form>
 
             </div>
         </div>
