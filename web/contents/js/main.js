@@ -34,14 +34,14 @@ function checkemail() {
 		var paramz = "param3=" + e;
 		http.send(paramz);
 		http.onload = function() {
-			// alert(http.responseText);
-			document.getElementById('result1').innerHTML=(http.responseText);
-			// swal("username is already Exist..!");
-		}
-		return false;
+			var s = http.responseText.trim();
+			if (s === '' || s === null) {
+				//
+			} else {
+				swal("The Email (" + e + ")  is Exists..!");
+			}
+		};
 	}
-
-	return true;
 }
 
 // check in database if there is the same admin username as the client wants to register in order to avoid duplicates
@@ -271,7 +271,7 @@ function create_new_client() {
 // Register New Client
 function Register_new_client() {
 
-	var userNameReg = document.getElementById("myuser").value;
+	var userNameReg = document.getElementById("myuserReg").value;
 	var firstNameReg = document.getElementById("fname").value;
 	var lastNameReg = document.getElementById("lname").value;
 	var passwordReg = document.getElementById("password_register").value;
@@ -295,7 +295,7 @@ function Register_new_client() {
 		}else {
 			http.open('POST', 'register_client', true);
 			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			http.send("myuser=" + userNameReg +
+			http.send("myuserReg=" + userNameReg +
 				"&fname=" + firstNameReg +
 				"&lname=" + lastNameReg +
 				"&password_register=" + passwordReg +
@@ -307,12 +307,12 @@ function Register_new_client() {
 					swal("Not Created");
 				} else {
 					congratesRegister();
-					document.getElementById("myuser").value = '';
+					document.getElementById("myuserReg").value = '';
 					document.getElementById("fname").value = '';
 					document.getElementById("lname").value = '';
 					document.getElementById("password_register").value = '';
 					document.getElementById("email").value = '';
-					return true;
+
 				}
 			};
 			return false;
@@ -442,7 +442,6 @@ function delete_client() {
 		});
 	return false;
 }
-
 
 /*// When the user clicks on div, open the popup*/
 function myFunctionPopup() {

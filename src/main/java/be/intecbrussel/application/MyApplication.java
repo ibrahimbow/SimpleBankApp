@@ -4,12 +4,15 @@ import be.intecbrussel.controller.MyController;
 import be.intecbrussel.custom_exception.BankTransactionException;
 import be.intecbrussel.dao_implementation.AdminDaoImpl;
 import be.intecbrussel.entity.Account;
+import be.intecbrussel.entity.Client;
 import be.intecbrussel.entity.TransactionsLog;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class MyApplication {
 
@@ -18,7 +21,33 @@ public class MyApplication {
         AdminDaoImpl adminDao = new AdminDaoImpl();
         MyController m = new MyController();
 
-       // System.out.println(m.checkAdminUserName("as"));
+//m.add("ibrahimbow","bbbg","bbg","bbg@bbg.com","bbg");
+//
+//
+//        List<TransactionsLog> accountList = m.showAllTransactionLog();
+//        System.out.println(" username \t\t firstname \t\t email \t\t date of join \t \t accountNumber\t \t amount \t number of transactions");
+//        m.showAllTransactionLog().stream().map(TransactionsLog::getAccount).distinct()
+//                .map(client -> client.getClient().getUsername() + " \t\t  "+
+//                client.getClient().getFirst_name() + " \t\t" +
+//                client.getClient().getEmail() + " \t\t" +
+//                 client.getClient().getDate_of_join() + " \t\t" +
+//                client.getAccount_number() + " \t\t" +
+//                client.getCurrent_balance() + " \t\t" +
+//                client.getTransactionArrayList().stream().map(TransactionsLog::getAccount).count()).forEach(System.out::println);
+//
+//
+//        m.showAllClientsTransactionLog().forEach(System.out::println);
+
+
+//        for (TransactionsLog t : accountList){
+//            System.out.println(t.getAccount().getClient().getUsername()+ "\t "
+//                    +t.getAccount().getClient().getLast_name() + "    \t"
+//                    + t.getAccount().getClient().getEmail() + "\t "
+//                    + t.getAccount().getAccount_number());
+//            System.out.println("\n\n");
+//        }
+
+        // System.out.println(m.checkAdminUserName("as"));
 
        
 
@@ -38,9 +67,9 @@ public class MyApplication {
 //        m.add("q","q","qd","aaq","2q4asaser");
 
 
-        Account account = m.findByBankAccountNumber(6039569);
-        account.getClient().setFirst_name("alolofi");
-        m.getAdminDao().update(account);
+//        Account account = m.findByBankAccountNumber(6039569);
+//        account.getClient().setFirst_name("alolofi");
+//        m.getAdminDao().update(account);
 
 
 

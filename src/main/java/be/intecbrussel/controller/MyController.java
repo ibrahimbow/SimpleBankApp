@@ -7,6 +7,7 @@ import be.intecbrussel.service.GenerateAccountNumber;
 import be.intecbrussel.service.GenerateAmount;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -124,9 +125,12 @@ public class MyController {
                 client.setLast_name(last_name);
                 client.setEmail(email);
                 client.setPassword(password);
+                client.setDate_of_join(LocalDate.now());
+
                 GenerateAmount generateAmount = new GenerateAmount();
                 GenerateAccountNumber generateAccountNumber = new GenerateAccountNumber();
                 Account account = new Account(generateAccountNumber.getAccountNumber(), generateAmount.generatedAmount());
+
                 account.setClient(client);
 
                 client.getAccountList().add(account);
@@ -293,10 +297,25 @@ public class MyController {
                     "join Account as a" +
                     "    on t.account.id_account = a.id_account" +
                     " join TransactionType as tt" +
-                    "    on t.transactionType.id_transactionType = tt.id_transactionType where t.account.id_account = :id_Account";
+                    "    on t.transactionType.id_transactionType = tt.id_transactionType " +
+                    "where t.account.id_account = :id_Account";
             TypedQuery<TransactionsLog> transactionTypedQuery =
                     em.createQuery(sqlQueryShowTransactions, TransactionsLog.class);
             transactionTypedQuery.setParameter("id_Account",account_id);
+        return transactionTypedQuery.getResultList();
+    }
+
+    //This is for show all Transactions
+    public List<TransactionsLog> showAllTransactionLog() {
+        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+
+        String sqlQueryShowTransactions = "SELECT distinct t FROM TransactionsLog as t " +
+                "join Account as a" +
+                "    on t.account.id_account = a.id_account" +
+                " join TransactionType as tt" +
+                "    on t.transactionType.id_transactionType = tt.id_transactionType ";
+        TypedQuery<TransactionsLog> transactionTypedQuery =
+                em.createQuery(sqlQueryShowTransactions, TransactionsLog.class);
         return transactionTypedQuery.getResultList();
     }
 
@@ -398,10 +417,45 @@ public class MyController {
                 "join Account a " +
                 "on c.id_client = c.id_client " +
                 "WHERE a.account_number =: accountNumber";
-        TypedQuery<Client> transactionTypedQuery =
-                em.createQuery(sqlQueryShowClientInfo, Client.class);
-        transactionTypedQuery.setParameter("accountNumber",bankAccount);
+        TypedQuery<Client> clientTypedQuery = em.createQuery(sqlQueryShowClientInfo, Client.class);
+        clientTypedQuery.setParameter("accountNumber",bankAccount);
+        return clientTypedQuery.getResultList();
+    }
+
+    // This method is to return all clients
+    public List<Account> showAllClientsInfo() {
+        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        String sqlQueryShowClientInfo = "SELECT a FROM Account a " +
+                "join Client c on a.client.id_client = c.id_client";
+        TypedQuery<Account> clientTypedQuery = em.createQuery(sqlQueryShowClientInfo, Account.class);
+        return clientTypedQuery.getResultList();
+    }
+
+
+    // This method is to return the list of all the transaction and all data of clients who did transaction
+    public List<TransactionsLog> showAllClientsTransactionLog() {
+        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+
+        String sqlQueryShowTransactions = "SELECT t FROM TransactionsLog as t " +
+                "left join Account as a" +
+                "    on t.account.id_account = a.id_account" +
+                " left join TransactionType as tt" +
+                "    on t.transactionType.id_transactionType = tt.id_transactionType";
+        // i can use this command to show the times of transactions for each client
+//        "    on t.transactionType.id_transactionType = tt.id_transactionType group by a.id_account";
+        TypedQuery<TransactionsLog> transactionTypedQuery =
+                em.createQuery(sqlQueryShowTransactions, TransactionsLog.class);
         return transactionTypedQuery.getResultList();
+    }
+
+
+    // This method is for return the list of all logins of the clients
+    public List<Client> showAllLoginOfClients(){
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        String sqlQueryLogin = "SELECT c from Client as c " +
+                "join LogFile as l on l.client_log.id_client = c.id_client ";
+        TypedQuery<Client> clientTypedQuery = entityManager.createQuery(sqlQueryLogin,Client.class);
+        return clientTypedQuery.getResultList();
     }
 
 }

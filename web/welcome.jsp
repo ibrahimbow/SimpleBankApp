@@ -27,6 +27,7 @@
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="contents/vendor/bootstrap/css/bootstrap.min.css">
+
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
@@ -168,12 +169,11 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
-
     </div>
     <center><a href="#up"class="button"> up </a></center>
 </div>
+
 
 
 
@@ -193,8 +193,6 @@
             ps.update();
         })
     });
-
-
 </script>
 <!--===============================================================================================-->
 <script src="contents/js/main.js"></script>

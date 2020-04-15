@@ -16,7 +16,7 @@ public class Account {
     @Column(name = "account_number" , nullable = false,unique = true)
     private int account_number;
 
-    @Column(name = "current_balance",updatable = true)
+    @Column(name = "current_balance",updatable=true  , precision = 10, scale = 2)
     private double current_balance;
 
 

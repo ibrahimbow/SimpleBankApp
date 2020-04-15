@@ -58,8 +58,8 @@
                 <form>
                     <div class="sign-up-htm">
                         <div class="group">
-                            <label for="myuser" class="label">Username</label>
-                            <input id="myuser" type="text" class="input" name="username"
+                            <label for="myuserReg" class="label">Username</label>
+                            <input id="myuserReg" type="text" class="input" name="username"
                                    onchange="javascript:return checkusername()" required  />
                         </div>
                         <div class="group">
@@ -77,7 +77,7 @@
                         <div class="group">
                             <label for="email" class="label">Email Address</label>
                             <input id="email" type="email" class="input" name="email" placeholder="email@email.com"
-                                   onchange="return checkemail()" required />
+                                   onchange="javascript:return checkemail()" required />
                         </div>
 
                         <br>

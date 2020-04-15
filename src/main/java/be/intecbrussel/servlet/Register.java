@@ -16,7 +16,7 @@ public class Register extends HttpServlet {
 
 
 
-        String userName = request.getParameter("myuser");
+        String userName = request.getParameter("myuserReg");
         String firstName = request.getParameter("fname");
         String lastName = request.getParameter("lname");
         String pwd = request.getParameter("password_register");

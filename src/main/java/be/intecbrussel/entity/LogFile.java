@@ -41,4 +41,13 @@ public class LogFile {
     public void setClient_log(Client client_log) {
         this.client_log = client_log;
     }
+
+    @Override
+    public String toString() {
+        return "LogFile{" +
+                "id_log=" + id_log +
+                ", dateTime=" + dateTime +
+                ", client_log=" + client_log +
+                '}';
+    }
 }

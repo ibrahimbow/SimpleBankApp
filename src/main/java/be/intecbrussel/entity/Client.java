@@ -3,6 +3,7 @@ package be.intecbrussel.entity;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,6 +37,9 @@ public class Client {
     @NotNull
     private String password;
 
+    @Column(name = "dateOfJoin", nullable = false)
+    @NotNull
+    private LocalDate date_of_join;
 
     @OneToMany(mappedBy="client",cascade=CascadeType.ALL ,orphanRemoval = true)
     private List<Account> accountList = new ArrayList<>();
@@ -65,6 +69,14 @@ public class Client {
     public int getId_client() {
 
         return id_client;
+    }
+
+    public LocalDate getDate_of_join() {
+        return date_of_join;
+    }
+
+    public void setDate_of_join(LocalDate date_of_join) {
+        this.date_of_join = date_of_join;
     }
 
     public void setId_client(int id_client) {
