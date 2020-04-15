@@ -168,7 +168,7 @@ a{color:inherit;text-decoration:none}
 	width: 100%;
 	display: block;
 	/*background: #fff;*/
-	background: #dbe9dd;
+	background: #cad8cc;
 	overflow-y: hidden;
 	box-sizing: border-box;
 	float: left;
@@ -216,6 +216,7 @@ a{color:inherit;text-decoration:none}
 
 .ea_table tr {
 	display: flex;
+	text-align: left;
 }
 
 
@@ -226,7 +227,7 @@ a{color:inherit;text-decoration:none}
 .ea_table td, .ea_table th {
 	text-align: left;
 	font-size: 0.75rem;
-	padding: 1.5rem;
+	/*padding: 1.5rem;*/
 	flex: 1;
 	white-space: nowrap;
 

@@ -330,12 +330,11 @@
 
                         for (Client client : logins) {
                             session.setAttribute("id", client.getId_client());
-                            session.setAttribute("accountNumber", client.getAccountList().stream().map(Account::getAccount_number));
+                            session.setAttribute("accountNumber", client.getAccountList().get(0).getAccount_number());
                             session.setAttribute("FirstName", client.getFirst_name());
                             session.setAttribute("lastName", client.getLast_name());
                             session.setAttribute("email", client.getEmail());
-                            session.setAttribute("loginDate", client.getLogFileArrayList().stream()
-                                    .map(LogFile::getDateTime));
+                            session.setAttribute("loginDate", client.getLogFileArrayList().get(0).getDateTime());
 
                             // this below return java.util.stream.ReferencePipeline$3@12643df3
                             //session.setAttribute("loginDate", client.getClient().getLogFileArrayList().stream().map(LogFile::getDateTime));

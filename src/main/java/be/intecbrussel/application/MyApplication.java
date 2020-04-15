@@ -5,6 +5,7 @@ import be.intecbrussel.custom_exception.BankTransactionException;
 import be.intecbrussel.dao_implementation.AdminDaoImpl;
 import be.intecbrussel.entity.Account;
 import be.intecbrussel.entity.Client;
+import be.intecbrussel.entity.LogFile;
 import be.intecbrussel.entity.TransactionsLog;
 
 import java.text.SimpleDateFormat;
@@ -49,7 +50,25 @@ public class MyApplication {
 
         // System.out.println(m.checkAdminUserName("as"));
 
-       
+//        List<Client> logins = m.showAllLoginOfClients();
+//        for (Client client : logins) {
+//            System.out.println(client.getLogFileArrayList()
+//                    .stream()
+////                    .filter(logFile -> logFile.getClient_log().getId_client() == client.getId_client())
+//                    .map(LogFile::getDateTime).collect(Collectors.toList()));
+//        }
+
+        List<LogFile> logFiles = m.ShowAllLogin();
+        for( LogFile logFile : logFiles){
+
+
+            System.out.println(logFile.getClient_log().getFirst_name());
+            System.out.println(logFile.getClient_log().getAccountList().get(0).getAccount_number());
+
+
+        }
+
+
 
 //        TransactionsLog transaction = new TransactionsLog();
 //

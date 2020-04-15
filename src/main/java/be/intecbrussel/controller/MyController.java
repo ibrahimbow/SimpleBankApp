@@ -458,4 +458,14 @@ public class MyController {
         return clientTypedQuery.getResultList();
     }
 
+    public List<LogFile> ShowAllLogin(){
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        String sqlQueryLogins = " SELECT l from LogFile as l " +
+                "join Client as c on c.id_client = l.client_log.id_client " +
+                "join Account as a on c.id_client = a.client.id_client";
+        TypedQuery<LogFile> logFileTypedQuery = entityManager.createQuery(sqlQueryLogins,LogFile.class);
+        return logFileTypedQuery.getResultList();
+
+    }
+
 }
