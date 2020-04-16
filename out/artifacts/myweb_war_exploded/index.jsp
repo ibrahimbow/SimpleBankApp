@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="contents/css/style_popup.css">
     <link rel="stylesheet" href="contents/css/styleAnimation.css">
     <link rel="stylesheet" href="contents/css/styleAnimation.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.10/css/all.css'>
 
     <script src="contents/js/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -37,11 +39,17 @@
                     <div class="group">
                         <br><br>
                         <label for="loginUser" class="label">Username</label>
-                        <input id="loginUser" type="text" class="input" name="username" onchange="return checkUserNameLogin()">
+                        <div class ="inputWithIconLogin">
+                            <i class="fas fa-user icon"></i>
+                        <input id="loginUser" type="text" class="inputLogin" name="username" onchange="return checkUserNameLogin()">
+                        </div>
                     </div>
                     <div class="group">
                         <label for="password" class="label">Password</label>
-                        <input id="password" type="password" class="input" data-type="password" name="pwd">
+                        <div class ="inputWithIconLogin">
+                            <i class="fas fa-key icon"></i>
+                        <input id="password" type="password" class="inputLogin" data-type="password" name="pwd">
+                        </div>
                     </div>
 
                     <div class="group">
@@ -55,12 +63,13 @@
                 </div>
          </form>
 
-                <form>
+                <form id="myformReg">
                     <div class="sign-up-htm">
                         <div class="group">
                             <label for="myuserReg" class="label">Username</label>
                             <input id="myuserReg" type="text" class="input" name="username"
-                                   onchange="javascript:return checkusername()" required  />
+                                   onchange="javascript: return checkusername()">
+                            <span id="resultReg"></span>
                         </div>
                         <div class="group">
                             <label for="fname" class="label">First Name</label>

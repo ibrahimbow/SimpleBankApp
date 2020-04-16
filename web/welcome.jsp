@@ -19,31 +19,32 @@
     <title>Welcome to you Account</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     <!--===============================================================================================-->
     <link rel="stylesheet" href="contents/css/style.css">
     <link rel="stylesheet" href="contents/css/styleAnimation.css">
     <link rel="stylesheet" href="contents/css/styleAnimation.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.10/css/all.css'>
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-    <!--===============================================================================================-->
+
     <link rel="stylesheet" type="text/css" href="contents/vendor/bootstrap/css/bootstrap.min.css">
 
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<%--    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">--%>
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="contents/vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="contents/vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
+<%--    <link rel="stylesheet" type="text/css" href="contents/vendor/animate/animate.css">--%>
+<%--    <!--===============================================================================================-->--%>
+<%--    <link rel="stylesheet" type="text/css" href="contents/vendor/select2/select2.min.css">--%>
+<%--    <!--===============================================================================================-->--%>
     <link rel="stylesheet" type="text/css" href="contents/vendor/perfect-scrollbar/perfect-scrollbar.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="contents/css/util.css">
+<%--    <link rel="stylesheet" type="text/css" href="contents/css/util.css">--%>
     <link rel="stylesheet" type="text/css" href="contents/css/main.css">
-
-
     <!--    ===============================================================================================-->
 
-    <%-- This to clear the cashe  after the user logoff--%>
+    <%-- This to clear off the cashe  after the user logoff--%>
     <%
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache");
@@ -64,9 +65,10 @@
                 session.setAttribute("amount", myController.findByBankAccountNumber(from_bankAccountNumber).getCurrent_balance());
             }
 
+
     %>
 
-    <%--  to update and reload the data from database  --%>
+    <%-- my TRICK:)-  REFRESHING the only part of amount to be able to get the newest amount from database--%>
     <script src="http://code.jquery.com/jquery-latest.js "></script>
     <script>
         setInterval("my_function();",1000);
@@ -78,41 +80,53 @@
 
 </head>
 
-
+<body>
 <div id="up" class="login-wrap" >
     <center>
         <div class="login-html">
             <%--   this is to get the username from database via servlet also same as with amount--%>
-            <div class="welcome"> WELCOME <br> <br> ${username} </div>
-            <br><span> Your Account number : </span><div class="number"  id="ac"> ${from_bankAccountNumber} </div>  <br>
+            <div class="welcome"> WELCOME <br> ${username}
+            </div>
+                <hr style="line-break: auto; height: 0.2px; background-color: #b1b3b6 " />
+                <div class="welcome1"  id="ac">
+            <br><span> Your Account number : </span> ${from_bankAccountNumber} </div>
 
-            <div id="refresh">
+            <div id="refresh" class="welcome1">
                 <div id="currentAmountNow" >
                     <%--   Finally i made it more than 11 hours to make auto-reload the data of new amount for receiver and sender as well   --%>
-                    <span>Your current Amount : </span ><div class="number" id="currentAmount" > ${amount}</div>
-                <%--Here (input)we get the current amount to compare it the transfer money --%>
+                        <div id="currentAmount" >
+                        <span>Your current Amount : €   ${amount}  </span >
+                        </div>
+                    <%--Here is the Hidden (input). We get the current amount to compare it the transfer money --%>
+                    <%--hidden (my tricky way)--%>
                     <input hidden id="currentmoney"  value="${amount}">
+                        <input hidden id="bankAccountNumberIdToCheckIfItTheSame"  value="${from_bankAccountNumber}">
                 </div>
             </div>
 
-            <hr style="line-break: auto; height: 3px; " />
-            <div id="data"></div>
-            <br>
+                <hr style="line-break: auto; height: 0.2px; background-color: #b1b3b6 " />
+
             <div class="welcome">Transaction money </div>
-            <br>
             <div class="login-form">
-                <form action="transferMoney" method="post" name="sendMoney" onchange="manage(this)" onkeypress="return isNumber(event)">
-                    <label for="amountx" class="label">Please enter the Amount</label>
-                    <input id="amountx" type="text"  class="inputTransaction" name="money"
-                    onchange=" checkAmount()">
-                    <span id="enough"></span>
-                    <br>
-                    <label for="number" class="label">Enter the account number</label>
-                    <input id="number" type="text"  class="inputTransaction"  name="bankAccountNumber"
-                           onchange="javascript:return checkAccountNumber()" >
-                    <span id="result4" name="result4"></span><br>
-                    <div class="group">
-                        <button type="submit" class="buttonTransaction" id="submit"  disabled>Transfer Money</button>
+<%--                <form action="transferMoney" method="post" name="sendMoney" onchange="manage(this)" onkeypress="return isNumber(event)">--%>
+                    <form  name="sendMoney" onchange="manage(this)" onkeypress="return isNumber(event)">
+
+                                <label for="amountx" class="label">Please enter the Amount</label>
+                        <div class ="inputWithIcon">
+                            <i class="fas fa-euro-sign icon"></i>
+                                <input id="amountx" type="text"  class="inputTransaction" name="money" onchange=" checkAmount()">
+                                <br>
+                        </div>
+
+                                <label for="bankAccountNumberId" class="label">Enter the account number</label>
+                        <div class ="inputWithIcon">
+                                <i class="fa fa-credit-card"></i>
+                                <input id="bankAccountNumberId" type="text"  class="inputTransaction"  name="bankAccountNumber" onchange="javascript:return checkAccountNumber()" >
+                                <br>
+                        </div>
+
+                        <div class="group">
+                        <button type="submit" class="buttonTransaction" id="submit" onclick="return transaction_money()" disabled>Transfer Money</button>
                     </div>
                 </form>
                 <form action="logout">
@@ -120,11 +134,18 @@
                         <button type="submit" class="buttonTransaction"> Logout</button>
                     </div>
                 </form>
-                <div class="welcome1"><a href="#transferLog"> Transaction Logs </a> </div>
+                <br>
+                <div class="welcome2"><a href="#transferLog"> Transaction Logs </a> </div>
             </div>
+
 
     </center>
 </div>
+
+
+
+
+
 
 <%--table of transactions--%>
 <div class="container-table100">
@@ -135,7 +156,7 @@
                     <thead>
                     <tr class="row100 head">
                         <th class="cell100 column2">Account Number </th>
-                        <th class="cell100 column3">Date - Time </th>
+                        <th class="cell100 column3">Date&nbsp;&nbsp;  - &nbsp;&nbsp;&nbsp; Time </th>
                         <th class="cell100 column4">Amount</th>
                         <th class="cell100 column5">Transaction Type</th>
                     </tr>
@@ -146,12 +167,11 @@
             <div class="table100-body js-pscroll">
                 <table>
                     <tbody>
-
                     <%
-
-                        String DATE_FORMATTER= "yyyy-MM-dd  HH:mm:ss";
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
-                        List<TransactionsLog> pList = myController.showTransactionLog(myController.findByBankAccountNumber(from_bankAccountNumber).getId_account());
+                        // Here we have to use the the list of all the transactions of the client has made, auto-reload from database
+                            String DATE_FORMATTER = "yyyy-MM-dd ' at ' HH:mm:ss";
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
+                            List<TransactionsLog> pList = myController.showTransactionLog(myController.findByBankAccountNumber(from_bankAccountNumber).getId_account());
 
                         for (TransactionsLog transaction : pList) {
                             session.setAttribute("date_To", transaction.getTransaction_date_time().format(formatter));

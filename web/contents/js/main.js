@@ -1,4 +1,4 @@
-
+// Table of Transactions
 (function ($) {
 	"use strict";
 	$('.column100').on('mouseover',function(){
@@ -26,7 +26,7 @@
 
 // check in database if there is the same email as the client wants to register in order to avoid duplicates
 function checkemail() {
-	var e = document.forms["myform"]["email"].value;
+	var e = document.forms["myformReg"]["email"].value;
 	if(document.getElementById("email").value !== ""){
 		var http = new XMLHttpRequest();
 		http.open("POST", "http://localhost:8090/myweb_war_exploded/checkemail.jsp", true);
@@ -69,9 +69,9 @@ function checkUserNameLogin() {
 
 // check in database if there is the same username as the client wants to register in order to avoid duplicates
 function checkusername() {
-	// var n = document.forms["myform"]["myuser"].value;
-	var n = document.getElementById("myuser").value;
-	if (document.getElementById("myuser").value !== "") {
+	var n = document.forms["myformReg"]["myuserReg"].value;
+	// var n = document.getElementById("myuserReg").value;
+	if (document.getElementById("myuserReg").value !== "") {
 
 		var http = new XMLHttpRequest();
 		http.open("POST", "http://localhost:8090/myweb_war_exploded/checkuser.jsp", true);
@@ -84,9 +84,12 @@ function checkusername() {
 				//
 			} else {
 				swal("The client (" + n + ")  is Exists..!");
+				document.getElementById("resultReg").value = http.responseText;
 			}
 		};
+		return false;
 	}
+	return true;
 }
 
 // check the fields which are empty because its not allowed all information is
@@ -105,25 +108,30 @@ function checkMyFormEmpty() {
 }
 
 
-// alert create new user
+// alert Register new user
 function congratesRegister() {
 	swal({
 		title: "Good job!",
-		text: "Your account success created !",
+		text: "Your account is created !",
 		icon: "success",
-		button: "YES!",
+		button: true,
 	}).then((result) => {
 		if (result.value) {
-			window.location.href = `/welcome.jsp`
+		//
+		}else {
+			window.location.reload();
+			return false;
 		}
 	});
+
+
 }
 
 // this alert for admin when he/she creates new client
 function congratesNewClient() {
 	swal({
 		title: "Good job!",
-		text: "Account success created !",
+		text: "Account is created !",
 		icon: "success",
 		button: "YES!",
 	});
@@ -146,8 +154,8 @@ function congratesNewClient() {
 
 // check if the account number is existed or not in case we need to update and delete the clients
 function checkAccountNumber() {
-	var e = document.forms["sendMoney"]["number"].value;
-	if(document.getElementById("number").value !== ""){
+	var e = document.forms["sendMoney"]["bankAccountNumberId"].value;
+	if(document.getElementById("bankAccountNumberId").value !== ""){
 		var http = new XMLHttpRequest();
 		http.open("POST", "http://localhost:8090/myweb_war_exploded/checkaccountnumber.jsp", true);
 		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -161,7 +169,7 @@ function checkAccountNumber() {
 				//
 			}else{
 				swal("Account Number (" + e + ")  is Not Exists..!");
-				document.getElementById("number").value='';
+				document.getElementById("bankAccountNumberId").value='';
 			}
 		};
 		return false;
@@ -169,7 +177,7 @@ function checkAccountNumber() {
 	return true;
 }
 
-// search for the account number of the client
+// search for the account number of the client in the admin side this function works
 // and return the information of the client and fill it in right the fields
 function searchAccountNumber() {
 	// var res = document.forms["updateuser"]["number1"].value;
@@ -265,6 +273,67 @@ function create_new_client() {
 }
 
 
+//Transaction
+function transaction_money() {
+
+	var amountToSend = document.getElementById("amountx").value;
+	var to_BankAccount = document.getElementById("bankAccountNumberId").value;
+	var from_BankAccount = document.getElementById("bankAccountNumberIdToCheckIfItTheSame").value;
+
+	var xmlHttpRequest = new XMLHttpRequest();
+	//
+	xmlHttpRequest.onreadystatechange = function() {
+		if (xmlHttpRequest.readyState === 4 || xmlHttpRequest.status === 200) {
+			//
+		}
+	};
+	// we user alert sweet to confirm before you delete the client
+	if (to_BankAccount !== "") {
+		swal({
+			title: "Are you sure?",
+			text: 'you want to send this ${amount} to this Account Number ',
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		})
+			.then((result) => {
+				if (result) {
+					if (document.getElementById("bankAccountNumberId").value !== "") {
+						xmlHttpRequest.open('POST', 'transactionServlet', true);
+						xmlHttpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+						xmlHttpRequest.send("amountx=" + amountToSend +
+							"&bankAccountNumberId=" + to_BankAccount);
+
+						xmlHttpRequest.onload = function () {
+							var s = xmlHttpRequest.responseText.trim();
+							if (s === '' || s === null) {
+								// swal("Not updated");
+							} else {
+								// swal("Client is Deleted");
+								document.getElementById("amountx").value = '';
+								document.getElementById("bankAccountNumberId").value = '';
+							}
+						};
+						swal("The amount is sent successfully...!", {
+							icon: "success",
+						});
+						return true
+					} else {
+						swal("please enter the Account Number..!");
+					}
+				} else {
+					swal("Your Money is still with you ;)-");
+					return false;
+				}
+			});
+	}else{
+		swal("please enter the Account Number..!");
+	}
+	return false;
+}
+
+
+
 /**
  * @return {boolean}
  */
@@ -312,8 +381,9 @@ function Register_new_client() {
 					document.getElementById("lname").value = '';
 					document.getElementById("password_register").value = '';
 					document.getElementById("email").value = '';
-
+					// setTimeout(window.location.reload,2000);
 				}
+
 			};
 			return false;
 		}
@@ -477,3 +547,47 @@ function isNumber(evt) {
 
 
 
+// notifaction if you recieve money
+
+// const Toast = Swal.mixin({
+// 	toast: true,
+// 	position: 'top-end',
+// 	showConfirmButton: false,
+// 	timer: 3000,
+// 	timerProgressBar: true,
+// 	onOpen: (toast) => {
+// 		toast.addEventListener('mouseenter', Swal.stopTimer)
+// 		toast.addEventListener('mouseleave', Swal.resumeTimer)
+// 	}
+// })
+//
+// Toast.fire({
+// 	icon: 'success',
+// 	title: 'Signed in successfully'
+// })
+
+
+
+//This is how to get the ip of users incase of transactions
+//
+// const ipAPI = '//api.ipify.org?format=json'
+//
+// Swal.queue([{
+// 	title: 'Your public IP',
+// 	confirmButtonText: 'Show my public IP',
+// 	text:
+// 		'Your public IP will be received ' +
+// 		'via AJAX request',
+// 	showLoaderOnConfirm: true,
+// 	preConfirm: () => {
+// 		return fetch(ipAPI)
+// 			.then(response => response.json())
+// 			.then(data => Swal.insertQueueStep(data.ip))
+// 			.catch(() => {
+// 				Swal.insertQueueStep({
+// 					icon: 'error',
+// 					title: 'Unable to get your public IP'
+// 				})
+// 			})
+// 	}
+// }])

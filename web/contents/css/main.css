@@ -92,11 +92,6 @@ iframe {
   overflow: hidden;
 }
 
-.js-pscrollAdmin {
-  position: absolute;
-  overflow: hidden;
-}
-
 
 .table100 .ps__rail-y {
   width: 9px;
@@ -146,6 +141,7 @@ iframe {
 }
 
 .container-table100 {
+
   width: 100%;
   min-height: 100vh;
   background: #fff;
@@ -258,6 +254,7 @@ th, td {
 
 .table100-body {
   max-height: 585px;
+
   overflow: auto;
 }
 

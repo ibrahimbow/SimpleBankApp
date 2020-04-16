@@ -308,7 +308,7 @@
                 <table class="ea_table " >
                     <thead class="tableFixedBG">
                     <tr>
-                        <th>Id</th>
+                        <th style="width: 10px;">Id</th>
                         <th>Account No</th>
                         <th>First Name</th>
                         <th>Last Name</th>
@@ -323,8 +323,8 @@
                     <tbody >
 
                     <%
-                        String DATE_FORMATTERLog= "yyyy-MM-dd  HH:mm:ss";
-                        DateTimeFormatter formatterLog = DateTimeFormatter.ofPattern(DATE_FORMATTER);
+//                        String DATE_FORMATTERLog= "yyyy-MM-dd  HH:mm:ss";
+//                        DateTimeFormatter formatterLog = DateTimeFormatter.ofPattern(DATE_FORMATTERLog);
 
                         List<Client> logins = myController.showAllLoginOfClients();
 
@@ -334,14 +334,14 @@
                             session.setAttribute("FirstName", client.getFirst_name());
                             session.setAttribute("lastName", client.getLast_name());
                             session.setAttribute("email", client.getEmail());
-                            session.setAttribute("loginDate", client.getLogFileArrayList().get(0).getDateTime());
+                            session.setAttribute("loginDate", client.getLogFileArrayList().get(0).getDateTime().format(formatter));
 
                             // this below return java.util.stream.ReferencePipeline$3@12643df3
                             //session.setAttribute("loginDate", client.getClient().getLogFileArrayList().stream().map(LogFile::getDateTime));
 
                     %>
                     <tr>
-                        <td > ${id}</td>
+                        <td style="width: 10px;"> ${id}</td>
                         <td >${accountNumber}</td>
                         <td >${FirstName}</td>
                         <td >${lastName}</td>

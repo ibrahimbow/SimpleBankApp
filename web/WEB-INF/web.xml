@@ -44,7 +44,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>transfer</servlet-name>
-        <url-pattern>/transferMoney</url-pattern>
+        <url-pattern>/transactionServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
