@@ -108,7 +108,7 @@ public class MyController {
     }
 
     // This method is to add new client via the client self
-    public void add(String userName, String first_name, String last_name, String email, String password) {
+    public void registerByClient(String userName, String first_name, String last_name, String email, String password) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction entityTransaction = null;
         try {
@@ -467,5 +467,6 @@ public class MyController {
         return logFileTypedQuery.getResultList();
 
     }
+
 
 }

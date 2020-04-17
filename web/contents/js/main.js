@@ -24,6 +24,8 @@
 
 })(jQuery);
 
+
+
 // check in database if there is the same email as the client wants to register in order to avoid duplicates
 function checkemail() {
 	var e = document.forms["myformReg"]["email"].value;
@@ -47,7 +49,7 @@ function checkemail() {
 // check in database if there is the same admin username as the client wants to register in order to avoid duplicates
 function checkUserNameLogin() {
 	var n = document.forms["loginId"]["loginUser"].value;
-	// var n = document.getElementById("myuser1")
+
 	if(document.getElementById("loginUser").value !== ""){
 		var http = new XMLHttpRequest();
 		http.open("POST", "http://localhost:8090/myweb_war_exploded/checkuser.jsp", true);
@@ -70,7 +72,6 @@ function checkUserNameLogin() {
 // check in database if there is the same username as the client wants to register in order to avoid duplicates
 function checkusername() {
 	var n = document.forms["myformReg"]["myuserReg"].value;
-	// var n = document.getElementById("myuserReg").value;
 	if (document.getElementById("myuserReg").value !== "") {
 
 		var http = new XMLHttpRequest();
@@ -226,12 +227,12 @@ function checkAmount() {
 function create_new_client() {
 
 
-	var userNameUpdate = document.getElementById("myuser").value;
-	var firstNameUpdate = document.getElementById("fname").value;
-	var lastNameUpdate = document.getElementById("lname").value;
-	var passwordUpdate = document.getElementById("password_register").value;
-	var emailUpdate = document.getElementById("email").value;
-	var amountUpdate = document.getElementById("amountCreate").value;
+	var userNameNew = document.getElementById("myuserReg").value;
+	var firstNameNew = document.getElementById("fname").value;
+	var lastNameNew = document.getElementById("lname").value;
+	var passwordNew = document.getElementById("password_register").value;
+	var emailNew = document.getElementById("email").value;
+	var amountNew = document.getElementById("amountCreate").value;
 
 	var http = new XMLHttpRequest();
 
@@ -242,15 +243,15 @@ function create_new_client() {
 	};
 
 	if(checkMyFormEmpty()) {
-		if (document.getElementById("myuser").value !== "") {
+		if (document.getElementById("myCheck").value !== "") {
 			http.open('POST', 'create_client', true);
 			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			http.send("myuser=" + userNameUpdate +
-				"&fname=" + firstNameUpdate +
-				"&lname=" + lastNameUpdate +
-				"&password_register=" + passwordUpdate +
-				"&email=" + emailUpdate +
-				"&amountCreate=" + amountUpdate);
+			http.send("myuser=" + userNameNew +
+				"&fname=" + firstNameNew +
+				"&lname=" + lastNameNew +
+				"&password_register=" + passwordNew +
+				"&email=" + emailNew +
+				"&amountCreate=" + amountNew);
 
 			http.onload = function () {
 				var s = http.responseText.trim();
@@ -258,7 +259,32 @@ function create_new_client() {
 					swal("Not Created");
 				} else {
 					congratesNewClient();
-					document.getElementById("myuser").value = '';
+					document.getElementById("myuserReg").value = '';
+					document.getElementById("fname").value = '';
+					document.getElementById("lname").value = '';
+					document.getElementById("password_register").value = '';
+					document.getElementById("email").value = '';
+					document.getElementById("amountCreate").value = '';
+				}
+			};
+			return false;
+		}else{
+			http.open('POST', 'create_client', true);
+			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			http.send("myuser=" + userNameNew +
+				"&fname=" + firstNameNew +
+				"&lname=" + lastNameNew +
+				"&password_register=" + passwordNew +
+				"&email=" + emailNew +
+				"&amountCreate=" + amountNew);
+
+			http.onload = function () {
+				var s = http.responseText.trim();
+				if (s === '' || s === null) {
+					swal("Not Created");
+				} else {
+					congratesNewClient();
+					document.getElementById("myuserReg").value = '';
 					document.getElementById("fname").value = '';
 					document.getElementById("lname").value = '';
 					document.getElementById("password_register").value = '';
@@ -447,13 +473,13 @@ function update_client() {
 // Delete Clients
 function delete_client() {
 
-	var accountNumber = document.getElementById("number1").value;
-	var userNameUpdate = document.getElementById("username_Update").value;
-	var firstNameUpdate = document.getElementById("fnameUpdate").value;
-	var lastNameUpdate = document.getElementById("lnameUpdate").value;
-	var passwordUpdate = document.getElementById("pass1Update").value;
-	var emailUpdate = document.getElementById("emailUpdate").value;
-	var amountUpdate = document.getElementById("amountUpdate").value;
+	var accountNumberDel = document.getElementById("number1").value;
+	var userNameDel = document.getElementById("username_Update").value;
+	var firstNameDel = document.getElementById("fnameUpdate").value;
+	var lastNameDel = document.getElementById("lnameUpdate").value;
+	var passwordDel = document.getElementById("pass1Update").value;
+	var emailDel = document.getElementById("emailUpdate").value;
+	var amountDel = document.getElementById("amountUpdate").value;
 
 	var http = new XMLHttpRequest();
 	//
@@ -475,13 +501,13 @@ function delete_client() {
 				if (document.getElementById("number1").value !== "") {
 					http.open('POST', 'delete_client', true);
 					http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					http.send("accountNumber=" + accountNumber +
-						"&username=" + userNameUpdate +
-						"&firstName=" + firstNameUpdate +
-						"&lastName=" + lastNameUpdate +
-						"&password=" + passwordUpdate +
-						"&email=" + emailUpdate +
-						"&amountUpdate=" + amountUpdate);
+					http.send("accountNumber=" + accountNumberDel +
+						"&username=" + userNameDel +
+						"&firstName=" + firstNameDel +
+						"&lastName=" + lastNameDel +
+						"&password=" + passwordDel +
+						"&email=" + emailDel +
+						"&amountUpdate=" + amountDel);
 
 					http.onload = function () {
 						var s = http.responseText.trim();

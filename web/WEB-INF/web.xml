@@ -23,7 +23,7 @@
 
     <servlet-mapping>
         <servlet-name>bbg2</servlet-name>
-        <url-pattern>/logout</url-pattern>
+        <url-pattern>/logoutUser</url-pattern>
     </servlet-mapping>
 
 

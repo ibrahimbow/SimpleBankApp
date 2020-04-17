@@ -17,7 +17,9 @@ a{color:inherit;text-decoration:none}
 	min-height:670px;
 	float: top;
 	position:relative;
-	background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
+	/*background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;*/
+	/*background:url(https://source.unsplash.com/collection/190727/1600x900) no-repeat center;*/
+
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 .login-html .welcome-html{

@@ -27,7 +27,7 @@ public class Register extends HttpServlet {
         try{
             if(myController.checkEmail(email)==null && myController.checkUserName(userName)==null) {
 
-                myController.add(userName, firstName, lastName, email, pwd);
+                myController.registerByClient(userName, firstName, lastName, email, pwd);
 
                 response.setContentType("text/html");
                 response.setHeader("Cache-Control", "no-cache");

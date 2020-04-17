@@ -3,6 +3,7 @@ package be.intecbrussel.dao_implementation;
 import be.intecbrussel.custom_exception.BankTransactionException;
 import be.intecbrussel.dao.Dao;
 import be.intecbrussel.entity.Account;
+import be.intecbrussel.entity.Admin;
 import be.intecbrussel.entity.Client;
 import be.intecbrussel.service.GenerateAccountNumber;
 
@@ -13,7 +14,7 @@ public class AdminDaoImpl implements Dao<Account> {
 
     private static  EntityManagerFactory ENTITY_MANAGER_FACTORY =
             Persistence.createEntityManagerFactory("bank_accounts");
-    private static EntityManager ENTITY_MNG = ENTITY_MANAGER_FACTORY.createEntityManager();
+//    private static EntityManager ENTITY_MNG = ENTITY_MANAGER_FACTORY.createEntityManager();
 
     @Override
     public void createNewAccount(String userName, String first_name, String last_name, String email, String password,double amount) {
@@ -125,4 +126,5 @@ public class AdminDaoImpl implements Dao<Account> {
             em.close();
         }
     }
+
 }

@@ -28,6 +28,7 @@ public class Create extends HttpServlet {
         String pwd = request.getParameter("password_register");
         String email = request.getParameter("email");
         String amount = request.getParameter("amountCreate");
+        String addNewAdmin = request.getParameter("myCheck");
 
 
         try {
@@ -36,7 +37,9 @@ public class Create extends HttpServlet {
             // This condition works only if the client want to register new account
 
             if(myController.checkEmail(email)==null && myController.checkUserName(userName)==null) {
+                if(addNewAdmin!="") {
 
+                    // Create new Client
                     myController.getAdminDao().createNewAccount(userName, firstName, lastName, email, pwd, newAmount);
 
                     response.setContentType("text/html");
@@ -46,7 +49,18 @@ public class Create extends HttpServlet {
 
                     PrintWriter outt = response.getWriter();
                     outt.print("created");
+                }else{
+                    // Create new Admin
 
+
+                    response.setContentType("text/html");
+                    response.setHeader("Cache-Control", "no-cache");
+                    response.setHeader("Pragma", "no-cache");
+                    response.setCharacterEncoding("UTF-8");
+
+                    PrintWriter outt = response.getWriter();
+                    outt.print("created");
+                }
 
             } else {
                 response.setContentType("text/html");

@@ -35,34 +35,28 @@
     %>
 
 
-
-
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.10/css/all.css'>
     <link rel="stylesheet" href="contents/css/style_admin.css">
     <link rel="stylesheet" href="contents/css/style.css">
-    <link rel="stylesheet" href="contents/css/style_popup.css">
-    <link rel="stylesheet" href="contents/css/styleAnimation.css">
-    <link rel="stylesheet" href="contents/css/styleAnimation.css">
+<%--    <link rel="stylesheet" href="contents/css/style_popup.css">--%>
+<%--    <link rel="stylesheet" href="contents/css/styleAnimation.css">--%>
+<%--    <link rel="stylesheet" href="contents/css/styleAnimation.css">--%>
 
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="contents/vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <!--===============================================================================================-->
+<%--    <!--===============================================================================================-->--%>
+<%--    <link rel="stylesheet" type="text/css" href="contents/vendor/perfect-scrollbar/perfect-scrollbar.css">--%>
+<%--    <!--===============================================================================================-->--%>
 
 </head>
 <body>
 
 <div class="tabContainer">
     <div class="header-html">
-        <div class="logoAdmin"> logo</div>
-        <div class="adminName">Admin ${username}
-            <form action="logout">
-                <div class="group">
-                    <button type="submit" class="buttonTransaction"> Logout</button>
-                </div>
-            </form>
+        <div class="logoAdmin"> logo </div>
+        <div class="adminName" id="username">Admin ${username}
+
         </div>
     </div>
 
@@ -74,6 +68,7 @@
                 <a onclick="showPanel(2,'#')"><i class="fa fa-tv"></i>Edit & Update</a>
                 <a onclick="showPanel(3,'#')"><i class="fa fa-tasks"></i> Transactions</a>
                 <a onclick="showPanel(4,'#')"><i class="fa fa-cog"></i>Logs</a>
+                <form action="logoutUser" >    <input type="submit" class="buttonTransaction" value="Logout"> </form>
             </nav>
         </div>
 
@@ -138,14 +133,16 @@
             </div>
 
 </div>
-            <%-- Create New Client Section--%>
-        <div class="tabPanel">Create
 
-            <form>
-                <div class="sign-up-htm">
+         <%-- Create New Client Section--%>
+        <div class="tabPanel">Create
+            <div class="login-form">
+            <form id="myformReg">
+                <div class="createAdminForm">
                     <div class="group">
-                        <label for="myuser" class="label">Username</label>
-                        <input id="myuser" type="text" class="input" name="username" onchange="javascript:return checkusername()"><span id="result" name="result"></span>
+                        <label for="myuserReg" class="label">Username</label>
+                        <input id="myuserReg" type="text" class="input" name="username" onchange="javascript:return checkusername()">
+
                     </div>
                     <div class="group">
                         <label for="fname" class="label">First Name</label>
@@ -166,18 +163,20 @@
                         <span id="result1" name="result1" ></span>
                     </div>
                     <div class="group">
-                        <label for="amountCreate" class="label">Email Address</label>
+                        <label for="amountCreate" class="label">Amount</label>
                         <input id="amountCreate" type="text" class="input" name="amountCreateN" placeholder="0.0"
                                onkeypress="return isNumber(event)">
                     </div>
                     <br>
                     <div class="group">
+
                         <input type="submit" class="button" value="Add" onclick=" return create_new_client()">
                     </div>
                 </div>
             </form>
-
+            </div>
         </div>
+
         <%--Edit and Delete Client Section--%>
         <div class="tabPanel">EDIT & DELETE
             <form >
@@ -235,6 +234,7 @@
             </form>
 
         </div>
+
         <%--Transaction section--%>
         <div class="tabPanel">Transactions Information
 
@@ -297,7 +297,7 @@
 
         </div>
 
-            <%--Logs for Logins Section--%>
+         <%--Logs for Logins Section--%>
         <div class="tabPanel">Login Information
             <label for="loginAccountNumber" > Enter Account number : </label>
             <input id="loginAccountNumber" class=" input-group-sm " type="text" />
@@ -361,26 +361,20 @@
 
 
 
-<%-- Show section >--%>
+
+
+<!--===============================================================================================-->
+
 
 <script src="contents/js/main.js"></script>
 <script src="contents/js/myScript.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--%>
+<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>--%>
 <script src="alert/dist/sweetalert-dev.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.js "></script>
+<%--<script src="http://code.jquery.com/jquery-latest.js "></script>--%>
 
-<!--===============================================================================================-->
-<script src="contents/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
-    $('.js-pscroll').each(function(){
-        var ps = new PerfectScrollbar(this);
-        $(window).on('resize', function(){
-            ps.update();
-        })
-    });
-
 
     $(document).ready(function () {
         if (!$.browser.webkit) {
