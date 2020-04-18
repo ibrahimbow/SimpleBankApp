@@ -40,7 +40,7 @@
                         <br><br>
                         <label for="loginUser" class="label">Username</label>
                         <div class ="inputWithIconLogin">
-                            <i class="fas fa-user icon"></i>
+                            <i class="fas fa-user icon"  ></i>
                         <input id="loginUser" type="text" class="inputLogin" name="username" onchange="return checkUserNameLogin()">
                         </div>
                     </div>

@@ -78,10 +78,7 @@
         <div class="tabPanel ">Clients information
 
 
-                <label for="viewClientInfoByAccountNumber" > Enter Account number : </label>
-                <input id="viewClientInfoByAccountNumber" class=" input-group-sm " type="text" />
                 <br><br>
-
 
             <div class="tablefit">
                 <table class="ea_table " >
@@ -238,8 +235,8 @@
         <%--Transaction section--%>
         <div class="tabPanel">Transactions Information
 
-            <label for="transactionAccountNumber" > Enter Account number : </label>
-            <input id="transactionAccountNumber" class=" input-group-sm " type="text" />
+
+
             <br><br>
 
 
@@ -299,8 +296,8 @@
 
          <%--Logs for Logins Section--%>
         <div class="tabPanel">Login Information
-            <label for="loginAccountNumber" > Enter Account number : </label>
-            <input id="loginAccountNumber" class=" input-group-sm " type="text" />
+
+
             <br><br>
 
 

@@ -31,7 +31,7 @@ function checkemail() {
 	var e = document.forms["myformReg"]["email"].value;
 	if(document.getElementById("email").value !== ""){
 		var http = new XMLHttpRequest();
-		http.open("POST", "http://localhost:8090/myweb_war_exploded/checkemail.jsp", true);
+		http.open("POST", "http://localhost:8080/myweb_war_exploded/checkemail.jsp", true);
 		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		var paramz = "param3=" + e;
 		http.send(paramz);
@@ -75,7 +75,7 @@ function checkusername() {
 	if (document.getElementById("myuserReg").value !== "") {
 
 		var http = new XMLHttpRequest();
-		http.open("POST", "http://localhost:8090/myweb_war_exploded/checkuser.jsp", true);
+		http.open("post", "http://localhost:8090/myweb_war_exploded/checkuser.jsp", true);
 		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		var params = "param2=" + n;
 		http.send(params);
@@ -83,6 +83,7 @@ function checkusername() {
 			var s = http.responseText.trim();
 			if (s === '' || s === null) {
 				//
+				document.getElementById("resultReg").value = http.responseText;
 			} else {
 				swal("The client (" + n + ")  is Exists..!");
 				document.getElementById("resultReg").value = http.responseText;
@@ -155,7 +156,10 @@ function congratesNewClient() {
 
 // check if the account number is existed or not in case we need to update and delete the clients
 function checkAccountNumber() {
-	var e = document.forms["sendMoney"]["bankAccountNumberId"].value;
+
+	var bt = document.getElementById('submit');
+	var e =document.getElementById("bankAccountNumberId").value;
+
 	if(document.getElementById("bankAccountNumberId").value !== ""){
 		var http = new XMLHttpRequest();
 		http.open("POST", "http://localhost:8090/myweb_war_exploded/checkaccountnumber.jsp", true);
@@ -170,7 +174,8 @@ function checkAccountNumber() {
 				//
 			}else{
 				swal("Account Number (" + e + ")  is Not Exists..!");
-				document.getElementById("bankAccountNumberId").value='';
+				// document.getElementById("bankAccountNumberId").value='';
+				bt.disabled = true;    // Disable the button.
 			}
 		};
 		return false;
@@ -226,7 +231,6 @@ function checkAmount() {
 // Create new clients
 function create_new_client() {
 
-
 	var userNameNew = document.getElementById("myuserReg").value;
 	var firstNameNew = document.getElementById("fname").value;
 	var lastNameNew = document.getElementById("lname").value;
@@ -243,32 +247,7 @@ function create_new_client() {
 	};
 
 	if(checkMyFormEmpty()) {
-		if (document.getElementById("myCheck").value !== "") {
-			http.open('POST', 'create_client', true);
-			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			http.send("myuser=" + userNameNew +
-				"&fname=" + firstNameNew +
-				"&lname=" + lastNameNew +
-				"&password_register=" + passwordNew +
-				"&email=" + emailNew +
-				"&amountCreate=" + amountNew);
-
-			http.onload = function () {
-				var s = http.responseText.trim();
-				if (s === '' || s === null) {
-					swal("Not Created");
-				} else {
-					congratesNewClient();
-					document.getElementById("myuserReg").value = '';
-					document.getElementById("fname").value = '';
-					document.getElementById("lname").value = '';
-					document.getElementById("password_register").value = '';
-					document.getElementById("email").value = '';
-					document.getElementById("amountCreate").value = '';
-				}
-			};
-			return false;
-		}else{
+		if (document.getElementById("myuserReg").value !== "") {
 			http.open('POST', 'create_client', true);
 			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			http.send("myuser=" + userNameNew +
@@ -304,7 +283,7 @@ function transaction_money() {
 
 	var amountToSend = document.getElementById("amountx").value;
 	var to_BankAccount = document.getElementById("bankAccountNumberId").value;
-	var from_BankAccount = document.getElementById("bankAccountNumberIdToCheckIfItTheSame").value;
+
 
 	var xmlHttpRequest = new XMLHttpRequest();
 	//
@@ -313,11 +292,15 @@ function transaction_money() {
 			//
 		}
 	};
-	// we user alert sweet to confirm before you delete the client
+
+
+
+
+	// we use sweetalert in order to confirm sending money before you say ohhh :)
 	if (to_BankAccount !== "") {
 		swal({
-			title: "Are you sure?",
-			text: 'you want to send this ${amount} to this Account Number ',
+			title: 'Are you sure?',
+			text: " please click ok or cancel",
 			icon: "warning",
 			buttons: true,
 			dangerMode: true,

@@ -109,7 +109,7 @@
             <div class="welcome">Transaction money </div>
             <div class="login-form">
 <%--                <form action="transferMoney" method="post" name="sendMoney" onchange="manage(this)" onkeypress="return isNumber(event)">--%>
-                    <form  name="sendMoney" onchange="manage(this)" onkeypress="return isNumber(event)">
+                    <form onchange="manage(this)" onkeypress="return isNumber(event)">
 
                                 <label for="amountx" class="label">Please enter the Amount</label>
                         <div class ="inputWithIcon">
@@ -117,7 +117,6 @@
                                 <input id="amountx" type="text"  class="inputTransaction" name="money" onchange=" checkAmount()">
                                 <br>
                         </div>
-
                                 <label for="bankAccountNumberId" class="label">Enter the account number</label>
                         <div class ="inputWithIcon">
                                 <i class="fa fa-credit-card"></i>
@@ -129,7 +128,7 @@
                         <button type="submit" class="buttonTransaction" id="submit" onclick="return transaction_money()" disabled>Transfer Money</button>
                     </div>
                 </form>
-                <form action="logout">
+                <form action="logoutUser">
                     <div class="group">
                         <button type="submit" class="buttonTransaction"> Logout</button>
                     </div>
