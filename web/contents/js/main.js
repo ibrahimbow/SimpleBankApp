@@ -25,13 +25,12 @@
 })(jQuery);
 
 
-
 // check in database if there is the same email as the client wants to register in order to avoid duplicates
-function checkemail() {
+function check_email() {
 	var e = document.forms["myformReg"]["email"].value;
 	if(document.getElementById("email").value !== ""){
 		var http = new XMLHttpRequest();
-		http.open("POST", "http://localhost:8080/myweb_war_exploded/checkemail.jsp", true);
+		http.open("POST", "http://localhost:8090/myweb_war_exploded/checkemail.jsp", true);
 		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		var paramz = "param3=" + e;
 		http.send(paramz);
@@ -45,6 +44,27 @@ function checkemail() {
 		};
 	}
 }
+
+// check email for update and delete form
+function check_email_update_delete() {
+	var e = document.forms["myform_update_delete"]["emailUD"].value;
+	if(document.getElementById("emailUD").value !== ""){
+		 var http = new XMLHttpRequest();
+		http.open("POST", "http://localhost:8090/myweb_war_exploded/checkemail.jsp", true);
+		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		var paramz = "param3=" + e;
+		http.send(paramz);
+		http.onload = function() {
+			var s = http.responseText.trim();
+			if (s === '' || s === null) {
+				//
+			} else {
+				swal("The Email (" + e + ")  is Exists..!");
+			}
+		};
+	}
+}
+
 
 // check in database if there is the same admin username as the client wants to register in order to avoid duplicates
 function checkUserNameLogin() {
@@ -70,7 +90,7 @@ function checkUserNameLogin() {
 }
 
 // check in database if there is the same username as the client wants to register in order to avoid duplicates
-function checkusername() {
+function check_username() {
 	var n = document.forms["myformReg"]["myuserReg"].value;
 	if (document.getElementById("myuserReg").value !== "") {
 
@@ -87,6 +107,29 @@ function checkusername() {
 			} else {
 				swal("The client (" + n + ")  is Exists..!");
 				document.getElementById("resultReg").value = http.responseText;
+			}
+		};
+		return false;
+	}
+	return true;
+}
+
+// check username for update and delete form
+function check_username_update_delete() {
+	var n = document.forms["myform_update_delete"]["myuserUD"].value;
+	if (document.getElementById("myuserUD").value !== "") {
+
+		var http = new XMLHttpRequest();
+		http.open("post", "http://localhost:8090/myweb_war_exploded/checkuser.jsp", true);
+		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		var params = "param2=" + n;
+		http.send(params);
+		http.onload = function () {
+			var s = http.responseText.trim();
+			if (s === '' || s === null) {
+				//
+			} else {
+				swal("The client (" + n + ")  is Exists..!");
 			}
 		};
 		return false;
@@ -406,11 +449,11 @@ function Register_new_client() {
 function update_client() {
 
 	var accountNumber = document.getElementById("number1").value;
-	var userNameUpdate = document.getElementById("username_Update").value;
+	var userNameUpdate = document.getElementById("myuserUD").value;
 	var firstNameUpdate = document.getElementById("fnameUpdate").value;
 	var lastNameUpdate = document.getElementById("lnameUpdate").value;
 	var passwordUpdate = document.getElementById("pass1Update").value;
-	var emailUpdate = document.getElementById("emailUpdate").value;
+	var emailUpdate = document.getElementById("emailUD").value;
 	var amountUpdate = document.getElementById("amountUpdate").value;
 
 	var http = new XMLHttpRequest();
@@ -421,7 +464,8 @@ function update_client() {
 		}
 	};
 
-	if(document.getElementById("number1").value !== ""){
+	if (accountNumber !== "" && firstNameUpdate!=="" && lastNameUpdate !=="" && passwordUpdate!=="" && emailUpdate!=="") {
+		if(document.getElementById("number1").value !== ""){
 		http.open('POST', 'updateServlet', true);
 		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		http.send("accountNumber="+accountNumber+
@@ -439,29 +483,31 @@ function update_client() {
 			}else{
 				swal("Account No: "+ accountNumber + " is " + s);
 				document.getElementById("number1").value='';
-				document.getElementById("username_Update").value='';
+				document.getElementById("myuserUD").value='';
 				document.getElementById("fnameUpdate"). value='';
 				document.getElementById("lnameUpdate"). value='';
 				document.getElementById("pass1Update"). value='';
-				document.getElementById("emailUpdate"). value='';
+				document.getElementById("emailUD"). value='';
 				document.getElementById("amountUpdate"). value='';
 			}
 		};
 		return false;
+		}
+	}else{
+		swal("Empty Fields..!");
+	return false;
 	}
-	return true;
-
 }
 
 // Delete Clients
 function delete_client() {
 
 	var accountNumberDel = document.getElementById("number1").value;
-	var userNameDel = document.getElementById("username_Update").value;
+	var userNameDel = document.getElementById("myuserUD").value;
 	var firstNameDel = document.getElementById("fnameUpdate").value;
 	var lastNameDel = document.getElementById("lnameUpdate").value;
 	var passwordDel = document.getElementById("pass1Update").value;
-	var emailDel = document.getElementById("emailUpdate").value;
+	var emailDel = document.getElementById("emailUD").value;
 	var amountDel = document.getElementById("amountUpdate").value;
 
 	var http = new XMLHttpRequest();
@@ -499,11 +545,11 @@ function delete_client() {
 						} else {
 							// swal("Client is Deleted");
 							document.getElementById("number1").value = '';
-							document.getElementById("username_Update").value = '';
+							document.getElementById("myuserUD").value = '';
 							document.getElementById("fnameUpdate").value = '';
 							document.getElementById("lnameUpdate").value = '';
 							document.getElementById("pass1Update").value = '';
-							document.getElementById("emailUpdate").value = '';
+							document.getElementById("emailUD").value = '';
 							document.getElementById("amountUpdate").value = '';
 						}
 					};

@@ -65,10 +65,10 @@
             <nav>
                 <a onclick="showPanel(0,'#')" ><i class="fa fa-user"></i> Client Info</a>
                 <a onclick="showPanel(1,'#')"><i class="fa fa-credit-card"></i>Add New Client</a>
-                <a onclick="showPanel(2,'#')"><i class="fa fa-tv"></i>Edit & Update</a>
+                <a onclick="showPanel(2,'#')"><i class="fas fa-edit"></i>Edit & Update</a>
                 <a onclick="showPanel(3,'#')"><i class="fa fa-tasks"></i> Transactions</a>
                 <a onclick="showPanel(4,'#')"><i class="fa fa-cog"></i>Logs</a>
-                <form action="logoutUser" >    <input type="submit" class="buttonTransaction" value="Logout"> </form>
+                <form action="logoutUser" >    <input type="submit" class="button" value="Logout"> </form>
             </nav>
         </div>
 
@@ -130,7 +130,6 @@
             </div>
 
 </div>
-
          <%-- Create New Client Section--%>
         <div class="tabPanel">Create
             <div class="login-form">
@@ -138,30 +137,30 @@
                 <div class="createAdminForm">
                     <div class="group">
                         <label for="myuserReg" class="label">Username</label>
-                        <input id="myuserReg" type="text" class="input" name="username" onchange="javascript:return checkusername()">
+                        <input id="myuserReg" type="text" class="inputupdatedel" name="username" onchange="javascript:return check_username()">
 
                     </div>
                     <div class="group">
                         <label for="fname" class="label">First Name</label>
-                        <input id="fname" type="text" class="input" name="fname">
+                        <input id="fname" type="text" class="inputupdatedel" name="fname">
                     </div>
                     <div class="group">
                         <label for="lname" class="label">Last Name</label>
-                        <input id="lname" type="text" class="input" name="lname">
+                        <input id="lname" type="text" class="inputupdatedel" name="lname">
                     </div>
                     <div class="group">
                         <label for="password_register" class="label">Password</label>
-                        <input id="password_register"  class="input"  name="password_register">
+                        <input id="password_register"  class="inputupdatedel"  name="password_register">
                     </div>
                     <div class="group">
                         <label for="email" class="label">Email Address</label>
-                        <input id="email" type="email" class="input" name="email" placeholder="email@email.com"
-                               onchange="javascript:return checkemail()" required />
+                        <input id="email" type="email" class="inputupdatedel" name="email" placeholder="email@email.com"
+                               onchange="javascript:return check_email()" required />
                         <span id="result1" name="result1" ></span>
                     </div>
                     <div class="group">
                         <label for="amountCreate" class="label">Amount</label>
-                        <input id="amountCreate" type="text" class="input" name="amountCreateN" placeholder="0.0"
+                        <input id="amountCreate" type="text" class="inputupdatedel" name="amountCreateN" placeholder="0.0"
                                onkeypress="return isNumber(event)">
                     </div>
                     <br>
@@ -176,60 +175,81 @@
 
         <%--Edit and Delete Client Section--%>
         <div class="tabPanel">EDIT & DELETE
-            <form >
+            <div class="login-form">
+                <div class="editDeleteAdminForm">
+              <form id="myform_update_delete">
+
                 <div  style="height: 20px;">
-                    <input id="number1" type="text" name="findBankAccountNumberUpdate" class="inputUpdate"
+                    <input id="number1" type="text" name="findBankAccountNumberUpdate" class="inputTransaction"
                            onchange="return searchAccountNumber()"
                            onkeypress="return isNumber(event)"><br>
                 </div>
+                <br>
 
-                <br><br><br><br>
-                <div  id="refresh1">
-                    <div id="up1" >
-                        <label for="username_Update" class="label">Username</label>
-                        <input id="username_Update" type="text" class="input" name="usernameUpdate1" value="${usernameUpdate}" >
+                <div id="refresh1" >
+                    <div id="up1">
+                        <div class="group">
+                        <label for="myuserUD" class="label">Username</label>
+                        <input id="myuserUD"  type="text" class="inputupdatedel" name="usernameUpdate1" value="${usernameUpdate}"
+                        onchange="return check_username_update_delete()">
                     </div>
                 </div>
-                <div  id="refresh2">
-                    <div id="up2" >
+                </div>
+
+                <div id="refresh2" >
+                    <div id="up2">
+                        <div class="group">
                         <label for="fnameUpdate" class="label">First Name</label>
-                        <input id="fnameUpdate" type="text" class="input" name="f_nameUpdate1" value="${f_nameUpdate}">
+                        <input id="fnameUpdate" type="text" class="inputupdatedel" name="f_nameUpdate1" value="${f_nameUpdate}">
+
+                        </div>
                     </div>
                 </div>
 
-                <div  id="refresh3">
-                    <div id="up3" >
-                        <label for="lnameUpdate" class="label">Last Name</label>
-                        <input id="lnameUpdate" type="text" class="input" name="l_nameUpdate1" value="${l_nameUpdate}" >
+                <div  id="refresh3" >
+                    <div id="up3">
+                        <div class="group">
+                  <label for="lnameUpdate" class="label">Last Name</label>
+                  <input id="lnameUpdate" type="text" class="inputupdatedel" name="l_nameUpdate1" value="${l_nameUpdate}" >
                     </div>
                 </div>
+                </div>
 
-                <div id="refresh4">
-                    <div id="up4" >
+                <div id="refresh4" >
+                    <div id="up4">
+                        <div class="group">
                         <label for="pass1Update" class="label">Password</label>
-                        <input id="pass1Update" type="text" class="input" data-type="password" name="passwordUpdate1" value="${passwordUpdate}" >
+                        <input id="pass1Update" type="text" class="inputupdatedel"  name="passwordUpdate1" value="${passwordUpdate}" >
                     </div>
                 </div>
-
-                <div  id="refresh5">
-                    <div id="up5" >
-                        <label for="emailUpdate" class="label">Email Address</label>
-                        <input id="emailUpdate" type="text" class="input" name="emailUpdate1"  value="${emailUpdate}">
-                    </div>
                 </div>
 
-                <div id="refresh6">
+                <div  id="refresh5" >
+                    <div id="up5">
+                        <div class="group">
+                        <label for="emailUD" class="label">Email Address</label>
+                        <input id="emailUD" type="text" class="inputupdatedel" name="emailUpdate1"
+                               value="${emailUpdate}" onchange="return check_email_update_delete()">
+                    </div>
+                </div>
+                </div>
+                <div id="refresh6" >
                     <div id="up6" >
+                        <div class="group">
                         <label for="amountUpdate" class="label">Amount</label>
-                        <input id="amountUpdate" type="text" class="input" data-type="float" name="amountUpdate1" value="${amountUpdate}">
+                        <input id="amountUpdate" type="text" class="inputupdatedel" data-type="float" name="amountUpdate1" value="${amountUpdate}">
                     </div>
                 </div>
-
+                </div>
+                  <div class="group">
                 <input type="submit" class="button" value="update" onclick=" return update_client()">
-                <br><br><br>
+                  </div>
+                  <div class="group">
                 <input type="submit" class="button" value="Delete"  onclick="return delete_client()">
+                  </div>
             </form>
-
+                </div>
+            </div>
         </div>
 
         <%--Transaction section--%>
@@ -365,11 +385,11 @@
 
 <script src="contents/js/main.js"></script>
 <script src="contents/js/myScript.js"></script>
-<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--%>
-<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>--%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="alert/dist/sweetalert-dev.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<%--<script src="http://code.jquery.com/jquery-latest.js "></script>--%>
+<script src="http://code.jquery.com/jquery-latest.js "></script>
 
 <script>
 
