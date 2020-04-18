@@ -39,8 +39,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.10/css/all.css'>
+    <link rel='stylesheet' href='use.fontawesome.com/releases/v5.0.11/css/all.css'>
+
     <link rel="stylesheet" href="contents/css/style_admin.css">
     <link rel="stylesheet" href="contents/css/style.css">
+
 <%--    <link rel="stylesheet" href="contents/css/style_popup.css">--%>
 <%--    <link rel="stylesheet" href="contents/css/styleAnimation.css">--%>
 <%--    <link rel="stylesheet" href="contents/css/styleAnimation.css">--%>
@@ -54,26 +57,36 @@
 
 <div class="tabContainer">
     <div class="header-html">
+        <form action="logoutUser" >
         <div class="logoAdmin"> logo </div>
-        <div class="adminName" id="username">Admin ${username}
+        <div class="adminName" id="username">Admin :   ${username}
+              <input type="image" class="buttonLogout" value="Logout" src="contents/images/logout.png" alt="Logout">
 
         </div>
+        </form>
     </div>
 
     <div class="left-html ">
         <div class="buttonContainer">
+            <CENTER>
             <nav>
-                <a onclick="showPanel(0,'#')" ><i class="fa fa-user"></i> Client Info</a>
-                <a onclick="showPanel(1,'#')"><i class="fa fa-credit-card"></i>Add New Client</a>
-                <a onclick="showPanel(2,'#')"><i class="fas fa-edit"></i>Edit & Update</a>
-                <a onclick="showPanel(3,'#')"><i class="fa fa-tasks"></i> Transactions</a>
-                <a onclick="showPanel(4,'#')"><i class="fa fa-cog"></i>Logs</a>
-                <form action="logoutUser" >    <input type="submit" class="button" value="Logout"> </form>
+
+                <a  onclick="showPanel(0,'#')"><i class="fa fa-home fa-fw icon"></i><br>Home</a>
+                <a  onclick="showPanel(1,'#')"><i class="fas fa-users icon"></i><br> Clients Info</a>
+                <a onclick="showPanel(2,'#')"><i class=" fas fa-user-plus icon"></i><br>Add New Client</a>
+                <a onclick="showPanel(3,'#')"><i class="fas fa-users-cog icon"></i><br>Edit & Delete</a>
+                <a onclick="showPanel(4,'#')"><i class="fas fa-exchange-alt icon"></i><br> Transactions</a>
+                <a onclick="showPanel(5,'#')"><i class="fas fa-history icon"></i><br>Logs</a>
+
             </nav>
+            </CENTER>
         </div>
 
     </div>
     <div class="right_content-html">
+
+        <div class="tabPanel"> Welcome to control panel</div>
+
         <%--Clients Information Section--%>
         <div class="tabPanel ">Clients information
 
@@ -130,8 +143,11 @@
             </div>
 
 </div>
+
          <%-- Create New Client Section--%>
-        <div class="tabPanel">Create
+        <div class="tabPanel">ADD NEW CLIENT
+            <hr style="line-break: auto; width:80%;height: 0.1px; background-color: #586577 " />
+            <br>
             <div class="login-form">
             <form id="myformReg">
                 <div class="createAdminForm">
@@ -174,7 +190,8 @@
         </div>
 
         <%--Edit and Delete Client Section--%>
-        <div class="tabPanel">EDIT & DELETE
+        <div class="tabPanel">Edit & delete
+            <hr style="line-break: auto; width:80%;height: 0.1px; background-color: #586577 " />
             <div class="login-form">
                 <div class="editDeleteAdminForm">
               <form id="myform_update_delete">
@@ -237,7 +254,8 @@
                     <div id="up6" >
                         <div class="group">
                         <label for="amountUpdate" class="label">Amount</label>
-                        <input id="amountUpdate" type="text" class="inputupdatedel" data-type="float" name="amountUpdate1" value="${amountUpdate}">
+                        <input id="amountUpdate" type="text" class="inputupdatedel" data-type="float" name="amountUpdate1" value="${amountUpdate}"
+                               onkeypress="return isNumber(event)">
                     </div>
                 </div>
                 </div>
@@ -245,7 +263,7 @@
                 <input type="submit" class="button" value="update" onclick=" return update_client()">
                   </div>
                   <div class="group">
-                <input type="submit" class="button" value="Delete"  onclick="return delete_client()">
+                <input type="button" class="buttondel" value="DELETE"  onclick="return delete_client()">
                   </div>
             </form>
                 </div>
@@ -254,22 +272,18 @@
 
         <%--Transaction section--%>
         <div class="tabPanel">Transactions Information
-
-
-
             <br><br>
-
 
             <div class="tablefit">
                 <table class="ea_table " >
                     <thead class="tableFixedBG">
                     <tr>
                         <th>Id</th>
-                        <th>Account No</th>
+                        <th>From </th>
                         <th>Sender</th>
                         <th>Date Time</th>
                         <th>Receiver</th>
-                        <th>Account No</th>
+                        <th>To</th>
                         <th>Amount</th>
                         <%--                        <th>In-Out</th>--%>
                         <%--                        <th>Login</th>--%>
@@ -391,6 +405,7 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js "></script>
 
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <script>
 
     $(document).ready(function () {

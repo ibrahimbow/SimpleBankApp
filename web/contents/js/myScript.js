@@ -1,5 +1,5 @@
-var tabButtons=document.querySelectorAll(".tabContainer .left-html .buttonContainer nav a");
-var tabPanels=document.querySelectorAll(".tabContainer .right_content-html  .tabPanel");
+var tabButtons = document.querySelectorAll(".tabContainer .left-html .buttonContainer nav a");
+var tabPanels = document.querySelectorAll(".tabContainer .right_content-html  .tabPanel");
 
 
 function showPanel(panelIndex,colorCode) {

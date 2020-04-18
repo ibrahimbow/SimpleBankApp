@@ -289,7 +289,7 @@ function create_new_client() {
 		}
 	};
 
-	if(checkMyFormEmpty()) {
+	if (userNameNew !== "" && firstNameNew!=="" && lastNameNew !=="" && passwordNew!=="" && emailNew!=="") {
 		if (document.getElementById("myuserReg").value !== "") {
 			http.open('POST', 'create_client', true);
 			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -316,8 +316,10 @@ function create_new_client() {
 			};
 			return false;
 		}
+	} else{
+	swal("Empty Fields..!");
+	return false;
 	}
-	return true;
 }
 
 
@@ -335,9 +337,6 @@ function transaction_money() {
 			//
 		}
 	};
-
-
-
 
 	// we use sweetalert in order to confirm sending money before you say ohhh :)
 	if (to_BankAccount !== "") {
@@ -575,7 +574,7 @@ function myFunctionPopup() {
 }
 
 
-// disable button if the text is empty
+// disable button if the text fields are empty
 function manage(txt) {
 	var bt = document.getElementById('submit');
 	var ele = document.getElementsByTagName('input');
