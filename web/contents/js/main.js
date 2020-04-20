@@ -271,6 +271,10 @@ function checkAmount() {
 
 }
 
+
+/**
+ * @return {boolean}
+ */
 // Create new clients
 function create_new_client() {
 
@@ -281,16 +285,22 @@ function create_new_client() {
 	var emailNew = document.getElementById("email").value;
 	var amountNew = document.getElementById("amountCreate").value;
 
-	var http = new XMLHttpRequest();
+	var checkEmailCreate = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
+	var http = new XMLHttpRequest();
+	//
 	http.onreadystatechange = function () {
 		if (http.readyState === 4 || http.status === 200) {
 			//
 		}
 	};
 
+	// It can not be registered if one of the fields is empty
 	if (userNameNew !== "" && firstNameNew!=="" && lastNameNew !=="" && passwordNew!=="" && emailNew!=="") {
-		if (document.getElementById("myuserReg").value !== "") {
+		if(!checkEmailCreate.test(emailNew)) {
+			swal("please Type your email correctly..! ");
+			return false;
+		}else {
 			http.open('POST', 'create_client', true);
 			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			http.send("myuser=" + userNameNew +
@@ -313,12 +323,13 @@ function create_new_client() {
 					document.getElementById("email").value = '';
 					document.getElementById("amountCreate").value = '';
 				}
+
 			};
 			return false;
 		}
-	} else{
-	swal("Empty Fields..!");
-	return false;
+	}else{
+		swal("Empty Fields..!");
+		return false;
 	}
 }
 
@@ -412,7 +423,7 @@ function Register_new_client() {
 	// It can not be registered if one of the fields is empty
 	if (userNameReg !== "" && firstNameReg!=="" && lastNameReg !=="" && passwordReg!=="" && emailReg!=="") {
 		if(!checkEmailReg.test(emailReg)) {
-			swal("please Type you email correctly..! ");
+			swal("please Type your email correctly..! ");
 			return false;
 		}else {
 			http.open('POST', 'register_client', true);

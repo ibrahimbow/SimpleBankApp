@@ -7,6 +7,7 @@ import be.intecbrussel.entity.Client;
 import be.intecbrussel.service.GenerateAccountNumber;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 public class AdminDaoImpl implements Dao<Account> {
@@ -17,37 +18,42 @@ public class AdminDaoImpl implements Dao<Account> {
 
     @Override
     public void createNewAccount(String userName, String first_name, String last_name, String email, String password,double amount) {
-        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        EntityTransaction entityTransaction = entityManager.getTransaction();
+        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityTransaction et = null;
+
         try{
             if(userName.equals("") || first_name.equals("") || last_name.equals("") || password.equals("") || email.equals("")) {
                 throw new BankTransactionException("Not allowed empty values");
-            }else {
-                entityTransaction.begin();
+            }
+                et = em.getTransaction();
+                et.begin();
                 Client client = new Client();
                 client.setUsername(userName);
                 client.setFirst_name(first_name);
                 client.setLast_name(last_name);
                 client.setEmail(email);
                 client.setPassword(password);
+                client.setDate_of_join(LocalDate.now());
 
                 Account account = new Account(new GenerateAccountNumber().getAccountNumber(), amount);
+
                 account.setClient(client);
 
                 client.getAccountList().add(account);
 
-                entityManager.persist(account);
-                entityManager.persist(client);
-                entityManager.getTransaction();
-                entityTransaction.commit();
-            }
+                em.persist(client);
+                em.persist(account);
+
+                em.getTransaction();
+                et.commit();
+
         }catch (Exception e){
-            if(entityTransaction !=null){
-                entityTransaction.rollback();
+            if(et !=null){
+                et.rollback();
             }
             System.out.println(e.getMessage());
         }finally {
-            entityManager.close();
+            em.close();
         }
     }
 

@@ -1,6 +1,7 @@
 package be.intecbrussel.servlet;
 
 import be.intecbrussel.controller.MyController;
+import be.intecbrussel.dao_implementation.AdminDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +14,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "create_client")
 public class Create extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        AdminDaoImpl adminDao = new AdminDaoImpl();
         MyController myController = new MyController();
         // these parameter send from the javascript via  XMLHttpRequest send
         // these parameters have values as text datatype because it comes from html text input
@@ -21,54 +22,40 @@ public class Create extends HttpServlet {
         /* XMLHttpRequest is an API in the form of an object
          whose methods transfer data between a web browser and a web server. */
 
+
         String userName = request.getParameter("myuser");
         String firstName = request.getParameter("fname");
         String lastName = request.getParameter("lname");
         String pwd = request.getParameter("password_register");
         String email = request.getParameter("email");
         String amount = request.getParameter("amountCreate");
-        String addNewAdmin = request.getParameter("myCheck");
 
+
+        double newAmount = Double.parseDouble(amount);
 
         try {
-            double newAmount = Double.parseDouble(amount);
 
-            // This condition works only if the client want to register new account
+            if (myController.checkEmail(email) == null && myController.checkUserName(userName) == null) {
 
-            if(myController.checkEmail(email)==null && myController.checkUserName(userName)==null) {
-                if(addNewAdmin!="") {
+                adminDao.createNewAccount(userName, firstName, lastName, email, pwd, newAmount);
 
-                    // Create new Client
-                    myController.getAdminDao().createNewAccount(userName, firstName, lastName, email, pwd, newAmount);
+                response.setContentType("text/html");
+                response.setHeader("Cache-Control", "no-cache");
+                response.setHeader("Pragma", "no-cache");
+                response.setCharacterEncoding("UTF-8");
 
-                    response.setContentType("text/html");
-                    response.setHeader("Cache-Control", "no-cache");
-                    response.setHeader("Pragma", "no-cache");
-                    response.setCharacterEncoding("UTF-8");
+                PrintWriter outt = response.getWriter();
+                outt.print("created");
 
-                    PrintWriter outt = response.getWriter();
-                    outt.print("created");
-                }else{
-                    // Create new Admin
-
-
-                    response.setContentType("text/html");
-                    response.setHeader("Cache-Control", "no-cache");
-                    response.setHeader("Pragma", "no-cache");
-                    response.setCharacterEncoding("UTF-8");
-
-                    PrintWriter outt = response.getWriter();
-                    outt.print("created");
-                }
 
             } else {
                 response.setContentType("text/html");
                 PrintWriter outt = response.getWriter();
                 outt.print("");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.getMessage();
         }
-    }
 
+    }
 }

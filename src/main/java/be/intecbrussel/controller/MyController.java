@@ -11,11 +11,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-// TODO: 3/29/2020
-//  show all the transaction for each client apart
-//  make new class for administration CRUD
-//  make Web-page mvc for controlling the data
-//  change the transaction money with sender the amount - done
 
 public class MyController {
 
@@ -135,6 +130,7 @@ public class MyController {
 
                 entityManager.persist(account);
                 entityManager.persist(client);
+
                 entityManager.getTransaction();
                 entityTransaction.commit();
             }

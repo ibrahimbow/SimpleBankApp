@@ -22,6 +22,7 @@ public class MyApplication {
         AdminDaoImpl adminDao = new AdminDaoImpl();
         MyController m = new MyController();
 
+
 //m.add("ibrahimbow","bbbg","bbg","bbg@bbg.com","bbg");
 //
 //
@@ -57,16 +58,16 @@ public class MyApplication {
 ////                    .filter(logFile -> logFile.getClient_log().getId_client() == client.getId_client())
 //                    .map(LogFile::getDateTime).collect(Collectors.toList()));
 //        }
-
-        List<LogFile> logFiles = m.ShowAllLogin();
-        for( LogFile logFile : logFiles){
-
-
-            System.out.println(logFile.getClient_log().getFirst_name());
-            System.out.println(logFile.getClient_log().getAccountList().get(0).getAccount_number());
-
-
-        }
+//
+//        List<LogFile> logFiles = m.ShowAllLogin();
+//        for( LogFile logFile : logFiles){
+//
+//
+//            System.out.println(logFile.getClient_log().getFirst_name());
+//            System.out.println(logFile.getClient_log().getAccountList().get(0).getAccount_number());
+//
+//
+//        }
 
 
 
@@ -92,7 +93,7 @@ public class MyApplication {
 
 
 
-//        adminDao.createNewAccount("","asd","sdsdfa","kpolk","adsdsdfad",123);
+        adminDao.createNewAccount("z","asd","sdsdfa","kpolk@x.com","adsdsdfad",123);
 
 
 //

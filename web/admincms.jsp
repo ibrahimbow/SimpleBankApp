@@ -86,7 +86,7 @@
     </div>
     <div class="right_content-html">
 
-        <%-- home--%>
+        <%-- home section--%>
         <div class="tabPanel"> <br><br><br><br><br><Br> Welcome to control panel
             <br><br>
 
@@ -97,6 +97,7 @@
         You can view all logins for all clients </div>
 
         </div>
+
         <%--Clients Information Section--%>
         <div class="tabPanel ">Clients information
 
@@ -155,8 +156,8 @@
 </div>
 
          <%-- Create New Client Section--%>
-        <div class="tabPanel">ADD NEW CLIENT
-            <hr style="line-break: auto; width:80%; color: #586577 " />
+        <div class="tabPanel">Add New Client
+            <hr style=" width:80%; color: #586577 " />
             <br>
             <div class="login-form">
             <form id="myformReg">
@@ -182,7 +183,6 @@
                         <label for="email" class="label">Email Address</label>
                         <input id="email" type="email" class="inputupdatedel" name="email" placeholder="email@email.com"
                                onchange="javascript:return check_email()" required />
-                        <span id="result1" name="result1" ></span>
                     </div>
                     <div class="group">
                         <label for="amountCreate" class="label">Amount</label>
