@@ -5,7 +5,6 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,7 +12,6 @@ import java.util.Objects;
 @Table(name="clients")
 public class Client {
     @Id
-    //@Column(name = "id_client", updatable = false, nullable = false)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id_client;
 

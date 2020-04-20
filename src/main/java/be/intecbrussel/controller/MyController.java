@@ -19,16 +19,20 @@ import java.util.List;
 
 public class MyController {
 
-    private static EntityManagerFactory ENTITY_MANAGER_FACTORY
-            = Persistence.createEntityManagerFactory("bank_accounts");
+    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("bank_accounts");
 
+    //Declare members
     private  Account account ;
     private Client client;
     private Admin admin;
     private AdminDaoImpl adminDao = new AdminDaoImpl();
     private LogFile log;
 
+    //constructor
+    public MyController() {
+    }
 
+    //Getters and setters
     public AdminDaoImpl getAdminDao() {
         return adminDao;
     }
@@ -45,23 +49,11 @@ public class MyController {
         this.account = account;
     }
 
-    public MyController() {
-    }
 
 
-    // This method is only to show only the information of all clients
-    public void showAll (){
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
-        EntityTransaction et = em.getTransaction();
-        et.begin();
-        TypedQuery<Client> sqlQuery = em.createQuery("SELECT c FROM Client c",Client.class);
-        List<Client> messagesResult = sqlQuery.getResultList();
-        messagesResult.forEach(System.out::println);
-        et.commit();
-        em.close();
-    }
+//============================Methods=======================================
 
-    // this method to check if the client exist on database or not
+    // This method to check if the client exist on database or not
     public boolean checkLogin(String usr, String pwd)  {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         String sqlQuery = "Select c from Client as c where c.username = :usr and c.password = :pwd";
@@ -80,6 +72,12 @@ public class MyController {
             entityManager.close();
         }
         return false;
+    }
+
+    //check if the fields are empty
+    public boolean checkEmptyText(String text1, String text2){
+
+        return text1 ==null || text2 == null;
     }
 
     // here i used object from client to see if the username and password is exist or not and then
@@ -244,12 +242,7 @@ public class MyController {
         transactionMoney(toBankAccountNumber,fromBankAccountNumber, amount,66); // receiver
     }
 
-    public boolean checkEmptyText(String text1, String text2){
-
-        return text1 ==null || text2 == null;
-    }
-
-    //This method return an object of the account
+    //This method return an object of the account which is be able to get data from any table in database
     public Account findByBankAccountNumber(int bankAccountNumber){
     EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
     String sqlQueryTransfer = "select a from Account as a " +
@@ -270,7 +263,7 @@ public class MyController {
     return this.account;
 }
 
-    // check if the email is already exist in database
+    // check if the bank account is already exist in account table
     public Account checkIfBankAccountNumberIsExist(int bankAccountNumber)  {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
 
@@ -380,7 +373,7 @@ public class MyController {
 
     }
 
-    //log registration file
+    //add client log date of login in the web application
     public void addLogsLogin(int id){
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction entityTransaction = null;
@@ -410,18 +403,6 @@ public class MyController {
         }
     }
 
-    //Show Client information to be updated
-    public List<Client> showClientInfo(int bankAccount) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
-        String sqlQueryShowClientInfo = "SELECT c FROM Client c " +
-                "join Account a " +
-                "on c.id_client = c.id_client " +
-                "WHERE a.account_number =: accountNumber";
-        TypedQuery<Client> clientTypedQuery = em.createQuery(sqlQueryShowClientInfo, Client.class);
-        clientTypedQuery.setParameter("accountNumber",bankAccount);
-        return clientTypedQuery.getResultList();
-    }
-
     // This method is to return all clients
     public List<Account> showAllClientsInfo() {
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
@@ -430,7 +411,6 @@ public class MyController {
         TypedQuery<Account> clientTypedQuery = em.createQuery(sqlQueryShowClientInfo, Account.class);
         return clientTypedQuery.getResultList();
     }
-
 
     // This method is to return the list of all the transaction and all data of clients who did transaction
     public List<TransactionsLog> showAllClientsTransactionLog() {
@@ -448,7 +428,6 @@ public class MyController {
         return transactionTypedQuery.getResultList();
     }
 
-
     // This method is for return the list of all logins of the clients
     public List<Client> showAllLoginOfClients(){
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
@@ -458,6 +437,7 @@ public class MyController {
         return clientTypedQuery.getResultList();
     }
 
+    //Show all logs for all clients
     public List<LogFile> ShowAllLogin(){
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         String sqlQueryLogins = " SELECT l from LogFile as l " +

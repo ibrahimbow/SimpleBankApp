@@ -1,22 +1,39 @@
+create table administrator
+(
+    admin_id       int auto_increment
+        primary key,
+    admin_name     varchar(255) not null,
+    admin_password varchar(255) null,
+    constraint UK_7j00tfyenw257u66her8goa6x
+        unique (admin_name)
+);
+
 create table clients
 (
     id_client  int auto_increment
         primary key,
-    email      varchar(255) null,
-    first_name varchar(255) null,
-    last_name  varchar(255) null,
-    password   varchar(255) null,
-    username   varchar(255) null
+    dateOfJoin date         not null,
+    email      varchar(255) not null,
+    first_name varchar(255) not null,
+    last_name  varchar(255) not null,
+    password   varchar(255) not null,
+    username   varchar(255) not null,
+    constraint UK_2kc6tkdn2q51asst92r8ayiv5
+        unique (dateOfJoin),
+    constraint UK_srdlopksdpbh4qo20au1v8w7r
+        unique (username),
+    constraint UK_srv16ica2c1csub334bxjjb59
+        unique (email)
 );
 
 create table accounts
 (
     id_account       int    not null
         primary key,
-    account_number   int    null,
+    account_number   int    not null,
     current_balance  double null,
     client_id_client int    null,
-    constraint accounts_account_number_uindex
+    constraint UK_6kplolsdtr3slnvx97xsy2kc8
         unique (account_number),
     constraint FKtg0pu0bgckgx38u40l3sjo5dc
         foreign key (client_id_client) references clients (id_client)
@@ -29,10 +46,10 @@ create table hibernate_sequence
 
 create table logs
 (
-    id_log               int  not null
+    id_log               int         not null
         primary key,
-    log_date_time        date null,
-    client_log_id_client int  null,
+    log_date_time        datetime(6) null,
+    client_log_id_client int         null,
     constraint FKf3ssgrufv3h5sbn5puh4ol6j6
         foreign key (client_log_id_client) references clients (id_client)
 );

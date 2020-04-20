@@ -54,17 +54,22 @@
             response.sendRedirect("index.jsp");
         }
 
+        int from_bankAccountNumber=0;
+        double current_Amount_D=0;
 
         MyController myController = new MyController();
 
-            int from_bankAccountNumber = (Integer) request.getSession().getAttribute("from_bankAccountNumber");
-            double current_Amount_D = (Double) request.getSession().getAttribute("amount");
+        try {
+            from_bankAccountNumber = (Integer) request.getSession().getAttribute("from_bankAccountNumber");
+            current_Amount_D = (Double) request.getSession().getAttribute("amount");
             // refresh the current amount when occur change in database
 
             if (current_Amount_D != myController.findByBankAccountNumber(from_bankAccountNumber).getCurrent_balance()) {
                 session.setAttribute("amount", myController.findByBankAccountNumber(from_bankAccountNumber).getCurrent_balance());
             }
-
+        }catch (Exception e){
+            e.getStackTrace();
+        }
 
     %>
 
@@ -81,7 +86,7 @@
 </head>
 
 <body>
-<div id="up" class="login-wrap" >
+<div id="up" class="login-wrap-welcome" >
     <center>
         <div class="login-html">
             <%--   this is to get the username from database via servlet also same as with amount--%>
@@ -170,6 +175,9 @@
                         // Here we have to use the the list of all the transactions of the client has made, auto-reload from database
                             String DATE_FORMATTER = "yyyy-MM-dd ' at ' HH:mm:ss";
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
+                      try {
+
+
                             List<TransactionsLog> pList = myController.showTransactionLog(myController.findByBankAccountNumber(from_bankAccountNumber).getId_account());
 
                         for (TransactionsLog transaction : pList) {
@@ -184,7 +192,11 @@
                         <td class="cell100 column4" >${money_To}</td>
                         <td class="cell100 column5" >${type_To}</td>
                     </tr>
-                    <%}%>
+                    <%}
+                    }catch (Exception e){
+                          e.getStackTrace();
+                    }
+                    %>
                     </tbody>
                 </table>
             </div>
@@ -198,11 +210,11 @@
 
 <!--===============================================================================================-->
 <script src="contents/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-<script src="contents/vendor/bootstrap/js/popper.js"></script>
-<script src="contents/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-<script src="contents/vendor/select2/select2.min.js"></script>
+<%--<!--===============================================================================================-->--%>
+<%--<script src="contents/vendor/bootstrap/js/popper.js"></script>--%>
+<%--<script src="contents/vendor/bootstrap/js/bootstrap.min.js"></script>--%>
+<%--<!--===============================================================================================-->--%>
+<%--<script src="contents/vendor/select2/select2.min.js"></script>--%>
 <!--===============================================================================================-->
 <script src="contents/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>

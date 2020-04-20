@@ -8,15 +8,13 @@ import java.util.List;
 @Table(name = "accounts")
 public class Account {
     @Id
-
-    //@Column(name = "id_account" , updatable = false, nullable = false)
     @GeneratedValue
     private int id_account;
 
     @Column(name = "account_number" , nullable = false,unique = true)
     private int account_number;
 
-    @Column(name = "current_balance",updatable=true  , precision = 10, scale = 2)
+    @Column(name = "current_balance", precision = 10, scale = 2)
     private double current_balance;
 
 
@@ -24,9 +22,12 @@ public class Account {
     private Client client ;
 
 
-
     @OneToMany(mappedBy="account", cascade=CascadeType.ALL, orphanRemoval = true)
     private List<TransactionsLog> transactionArrayList = new ArrayList<>();
+
+
+    public Account() {
+    }
 
     public List<TransactionsLog> getTransactionArrayList() {
         return transactionArrayList;
@@ -34,9 +35,6 @@ public class Account {
 
     public void setTransactionArrayList(List<TransactionsLog> transactionArrayList) {
         this.transactionArrayList = transactionArrayList;
-    }
-
-    public Account() {
     }
 
     public Account(int account_number , double current_balance) {

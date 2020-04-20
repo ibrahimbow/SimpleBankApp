@@ -17,21 +17,26 @@
 	width:100%;
 	height: 640px;
 	max-width:1000px;
-	/*margin:20px 100px 50px 100px;*/
-	margin:auto;
+	/*margin: 5px 0px 5px 0px ;*/
+	margin: auto;
 	background: #565b73;
 	border-radius:25px;
 	position: relative;
-	/*background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;*/
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 
+
+.copyright{
+	font-size: 10px;
+	color: #a8a3aa;
+	padding-left: 60px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
 .header-html{
 	width:100%;
 	height: 70px;
 	border-radius:25px;
 	background: #00183f;
-	/*background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;*/
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 
@@ -60,19 +65,13 @@
 
 
 
-.createAdminForm{
+.login-form .createAdminForm{
 
-	height: 500px;
+	height: 400px;
 	align-content: center;
 	position: relative;
 	margin-right: 150px;
 	margin-left: 150px;
-	/*padding-right: 50px;*/
-	/*padding-left: 50px;*/
-
-	/*background: #00183f;*/
-	/*background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;*/
-	/*box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);*/
 
 }
 .login-form .editDeleteAdminForm{
@@ -82,12 +81,7 @@
 	position: relative;
 	margin-right: 150px;
 	margin-left: 150px;
-	/*padding-right: 50px;*/
-	/*padding-left: 50px;*/
 
-	/*background: #00183f;*/
-	/*background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;*/
-	/*box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);*/
 }
 
 
@@ -152,20 +146,23 @@
 	font-family: sans-serif;
 	text-align: right;
 	float: right;
-	align-content: center;
-	margin: 25px 50px 0px 20px;
+	padding-right: 20px;
+	/*align-content: center;*/
+	margin: 23px 10px 0px 10px;
 	flex: auto;
 
 
 }
 .header-html .logoAdmin {
 
-	font-size: 15px;
+	font-size: 20px;
 	font-family: sans-serif;
 	text-align: left;
 	float: left;
-	margin: 25px 20px 20px 100px;
+	color:#fff;
+	margin: 24px 0px 0px 20px;
 }
+
 
 
 
@@ -173,7 +170,7 @@
 	position: relative;
 	/*left: 20px;*/
 	float: right;
-	margin: 0px 0px 0px 60px;
+	margin-left: 30px;
 	width: 30px;
 	height: 30px;
 	display:block;
@@ -204,6 +201,13 @@
 	cursor: pointer;
 
 }
+
+.tabContainer .left-html .buttonContainer nav a:active {
+	color: #3FB6A8;
+	/*transform: scale(1.1);*/
+	cursor: pointer;
+
+}
 .tabContainer .left-html .buttonContainer nav a:first-child {
 	margin-top: 5px;
 }
@@ -231,6 +235,16 @@
 	font-size: 22px;
 	display: none;
 }
+
+.tabContainer .right_content-html .tabPanel .textWelcome{
+	color: white;
+	text-align: center;
+	box-sizing: border-box;
+	font-family: sans-serif;
+	font-size: 16px;
+	padding-top: 30px;
+}
+
 
 /* table show Client or Transaction or Logs*/
 .tableShowClient{

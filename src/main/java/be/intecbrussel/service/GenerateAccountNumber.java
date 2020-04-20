@@ -1,21 +1,14 @@
 package be.intecbrussel.service;
 
 import be.intecbrussel.controller.MyController;
-import be.intecbrussel.entity.Account;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 
 import java.util.Random;
 
 public class GenerateAccountNumber {
-    private static EntityManagerFactory ENTITY_MANAGER_FACTORY
-            = Persistence.createEntityManagerFactory("bank_accounts");
 
     private int accountNumber;
-    private MyController myController = new MyController();
+    private MyController myController =new MyController();
+
 
 
 
@@ -55,14 +48,13 @@ public class GenerateAccountNumber {
         }
 
         setAccountNumber(generate);
-//        this. accountNumber= generate;
     }
 
-    // loop generating method until if finds unique bank account
+    // loop generating method until it finds unique bank account not the same in the database
     private void getGeneratedNumberAfterCheckedDuplicate(){
         generateAccountNumbers();
         while(true) {
-                if (myController.checkIfBankAccountNumberIsExist(getAccountNumber())!=null) {
+                if (this.myController.checkIfBankAccountNumberIsExist(getAccountNumber())!=null) {
                 generateAccountNumbers();
             } else {
                 setAccountNumber(getAccountNumber());

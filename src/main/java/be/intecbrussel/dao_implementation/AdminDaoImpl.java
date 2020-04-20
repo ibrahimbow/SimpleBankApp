@@ -3,7 +3,6 @@ package be.intecbrussel.dao_implementation;
 import be.intecbrussel.custom_exception.BankTransactionException;
 import be.intecbrussel.dao.Dao;
 import be.intecbrussel.entity.Account;
-import be.intecbrussel.entity.Admin;
 import be.intecbrussel.entity.Client;
 import be.intecbrussel.service.GenerateAccountNumber;
 
@@ -12,9 +11,9 @@ import java.util.List;
 
 public class AdminDaoImpl implements Dao<Account> {
 
-    private static  EntityManagerFactory ENTITY_MANAGER_FACTORY =
-            Persistence.createEntityManagerFactory("bank_accounts");
-//    private static EntityManager ENTITY_MNG = ENTITY_MANAGER_FACTORY.createEntityManager();
+    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("bank_accounts");
+
+    // This class made for admin
 
     @Override
     public void createNewAccount(String userName, String first_name, String last_name, String email, String password,double amount) {
@@ -58,14 +57,7 @@ public class AdminDaoImpl implements Dao<Account> {
         EntityTransaction entityTransaction = entityManagerUpdate.getTransaction();
         try {
             entityTransaction.begin();
-//            accountClient = ENTITY_MNG.find(Account.class,accountClient.getClient().getId_client());
             entityManagerUpdate.merge(accountClient);
-//            accountClient.getClient().setUsername(accountClient.getClient().getUsername());
-//            accountClient.getClient().setFirst_name(accountClient.getClient().getFirst_name());
-//            accountClient.getClient().setLast_name(accountClient.getClient().getLast_name());
-//            accountClient.getClient().setEmail(accountClient.getClient().getEmail());
-//            accountClient.getClient().setPassword(accountClient.getClient().getPassword());
-//            accountClient.setCurrent_balance(accountClient.getCurrent_balance());
             entityTransaction.commit();
         }catch (Exception e){
             if(entityTransaction !=null){

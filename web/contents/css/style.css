@@ -1,8 +1,12 @@
 
 body{
-	margin:0;
+	/*margin:0;*/
+	margin-top: 50px;
+	margin-bottom: 50px;
+	/*margin:60px 30px;*/
 	color:#6a6f8c;
 	background:#c8c8c8;
+	border-radius: 25px;
 	font:600 16px/18px 'Open Sans',sans-serif;
 }
 *,:after,:before{box-sizing:border-box}
@@ -12,19 +16,38 @@ a{color:inherit;text-decoration:none}
 
 .login-wrap{
 	width:100%;
+
+	margin:auto;
+	/*padding-top: 30px;*/
+	max-width:525px;
+	/*min-height:670px;*/
+	min-height:530px;
+	float: top;
+	position:relative;
+	border-radius:25px;
+	/*background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;*/
+	/*background:url(http://sam-free.com/wp-content/uploads/2019/11/F7F5B737_9-44.jpg) no-repeat center;*/
+    background:url(imageLogin/mywebBG.jpg) no-repeat center;
+
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
+
+.login-wrap-welcome{
+	width:100%;
+
 	margin:auto;
 	max-width:525px;
 	min-height:670px;
 	float: top;
 	position:relative;
+	border-radius:25px;
 	/*background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;*/
-	/*background:url(https://images.app.goo.gl/uFisHnNoCwdZvBfx7) no-repeat center;*/
-    /*background:url(contents/images/mywebBG.jpg) no-repeat center;*/
-
-
-
+	/*background:url(http://sam-free.com/wp-content/uploads/2019/11/F7F5B737_9-44.jpg) no-repeat center;*/
+	background:url(imageLogin/mywebBG.jpg) no-repeat center;
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
+
+
 .login-html .welcome-html{
 	width:100%;
 	height:100%;
@@ -32,6 +55,7 @@ a{color:inherit;text-decoration:none}
 	padding:40px 20px 40px 20px;
 	/*padding:90px 70px 50px 70px;*/
 	background:rgba(40,57,101,.9);
+	border-radius: 25px;
 }
 
 .login-html{
@@ -76,8 +100,10 @@ a{color:inherit;text-decoration:none}
 	color:#fff;
 	border-color:#1161ee;
 }
+
 .welcome{
 	font-size:20px;
+
 	/*margin-right:15px;*/
 	padding-bottom:5px;
 	margin:0px 0px 0px 0px;
@@ -364,3 +390,4 @@ font-size: 14px;
     border: none;
     color: dodgerBlue;
 }
+

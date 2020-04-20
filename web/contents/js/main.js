@@ -342,7 +342,7 @@ function transaction_money() {
 	if (to_BankAccount !== "") {
 		swal({
 			title: 'Are you sure?',
-			text: " please click ok or cancel",
+			text: " you want to send € " + amountToSend + " to account number " + to_BankAccount,
 			icon: "warning",
 			buttons: true,
 			dangerMode: true,
@@ -363,8 +363,10 @@ function transaction_money() {
 								// swal("Client is Deleted");
 								document.getElementById("amountx").value = '';
 								document.getElementById("bankAccountNumberId").value = '';
+
 							}
 						};
+						// $(".swal2-modal").css('background-color', '#000');
 						swal("The amount is sent successfully...!", {
 							icon: "success",
 						});
@@ -601,24 +603,40 @@ function isNumber(evt) {
 
 
 
-// notifaction if you recieve money
+// notification if you received money
 
-// const Toast = Swal.mixin({
-// 	toast: true,
-// 	position: 'top-end',
-// 	showConfirmButton: false,
-// 	timer: 3000,
-// 	timerProgressBar: true,
-// 	onOpen: (toast) => {
-// 		toast.addEventListener('mouseenter', Swal.stopTimer)
-// 		toast.addEventListener('mouseleave', Swal.resumeTimer)
-// 	}
-// })
+// function notification() {
 //
-// Toast.fire({
-// 	icon: 'success',
-// 	title: 'Signed in successfully'
-// })
+// 	var afterReceivedMoney = document.getElementById("afteramount").value;
+// 	var beforeReceiveMoney = document.getElementById("beforamount").value;
+// 	var receivedamount = document.getElementById("receivedamount").value;
+//
+// 	if(afterReceivedMoney < beforeReceiveMoney) {
+//
+//
+//
+//
+// 		const Toast = Swal.mixin({
+// 			toast: true,
+// 			position: 'top-end',
+// 			showConfirmButton: false,
+// 			timer: 3000,
+// 			timerProgressBar: true,
+// 			onOpen: (toast) => {
+// 				toast.addEventListener('mouseenter', Swal.stopTimer)
+// 				toast.addEventListener('mouseleave', Swal.resumeTimer)
+// 			}
+// 		})
+// 		Toast.fire({
+// 			icon: 'success',
+// 			title: 'Signed in successfully'
+// 		})
+//
+// 	}else{
+// 		// swal("ELSE before" + beforeReceiveMoney + " ?" + " AFTER " + afterReceivedMoney);
+// 		// do nothing
+// 	}
+// }
 
 
 

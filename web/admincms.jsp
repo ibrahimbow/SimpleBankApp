@@ -40,13 +40,13 @@
 
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.10/css/all.css'>
     <link rel='stylesheet' href='use.fontawesome.com/releases/v5.0.11/css/all.css'>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="contents/css/style_admin.css">
     <link rel="stylesheet" href="contents/css/style.css">
 
-<%--    <link rel="stylesheet" href="contents/css/style_popup.css">--%>
-<%--    <link rel="stylesheet" href="contents/css/styleAnimation.css">--%>
-<%--    <link rel="stylesheet" href="contents/css/styleAnimation.css">--%>
+    <link rel="stylesheet" href="contents/css/style_popup.css">
+    <link rel="stylesheet" href="contents/css/styleAnimation.css">
+    <link rel="stylesheet" href="contents/css/styleAnimation.css">
 
 <%--    <!--===============================================================================================-->--%>
 <%--    <link rel="stylesheet" type="text/css" href="contents/vendor/perfect-scrollbar/perfect-scrollbar.css">--%>
@@ -58,7 +58,7 @@
 <div class="tabContainer">
     <div class="header-html">
         <form action="logoutUser" >
-        <div class="logoAdmin"> logo </div>
+        <div class="logoAdmin ">Bank webApp</div>
         <div class="adminName" id="username">Admin :   ${username}
               <input type="image" class="buttonLogout" value="Logout" src="contents/images/logout.png" alt="Logout">
 
@@ -70,6 +70,7 @@
         <div class="buttonContainer">
             <CENTER>
             <nav>
+
 
                 <a  onclick="showPanel(0,'#')"><i class="fa fa-home fa-fw icon"></i><br>Home</a>
                 <a  onclick="showPanel(1,'#')"><i class="fas fa-users icon"></i><br> Clients Info</a>
@@ -85,8 +86,16 @@
     </div>
     <div class="right_content-html">
 
-        <div class="tabPanel"> Welcome to control panel</div>
+        <div class="tabPanel"> <br><br><br><br><br><Br> Welcome to control panel
+            <br><br>
 
+        <div class="textwelcome animated fadeIn ">Here you can view all the  clients information<br><br>
+            You can add new client <br><br>
+            you can Edit the information of the client or delete the client<br><br>
+        You can view all the transactions of all clients<br><br>
+        You can view all logins for all clients </div>
+
+        </div>
         <%--Clients Information Section--%>
         <div class="tabPanel ">Clients information
 
@@ -146,11 +155,11 @@
 
          <%-- Create New Client Section--%>
         <div class="tabPanel">ADD NEW CLIENT
-            <hr style="line-break: auto; width:80%;height: 0.1px; background-color: #586577 " />
+            <hr style="line-break: auto; width:80%; color: #586577 " />
             <br>
             <div class="login-form">
             <form id="myformReg">
-                <div class="createAdminForm">
+                <div class="editDeleteAdminForm">
                     <div class="group">
                         <label for="myuserReg" class="label">Username</label>
                         <input id="myuserReg" type="text" class="inputupdatedel" name="username" onchange="javascript:return check_username()">
@@ -181,7 +190,6 @@
                     </div>
                     <br>
                     <div class="group">
-
                         <input type="submit" class="button" value="Add" onclick=" return create_new_client()">
                     </div>
                 </div>
@@ -197,7 +205,7 @@
               <form id="myform_update_delete">
 
                 <div  style="height: 20px;">
-                    <input id="number1" type="text" name="findBankAccountNumberUpdate" class="inputTransaction"
+                    <input id="number1" type="text" name="findBankAccountNumberUpdate" class="inputTransaction" placeholder="Search Account Number"
                            onchange="return searchAccountNumber()"
                            onkeypress="return isNumber(event)"><br>
                 </div>
@@ -245,7 +253,7 @@
                     <div id="up5">
                         <div class="group">
                         <label for="emailUD" class="label">Email Address</label>
-                        <input id="emailUD" type="text" class="inputupdatedel" name="emailUpdate1"
+                        <input id="emailUD" type="text" class="inputupdatedel" name="emailUpdate1" placeholder="email@email.com"
                                value="${emailUpdate}" onchange="return check_email_update_delete()">
                     </div>
                 </div>
@@ -255,7 +263,7 @@
                         <div class="group">
                         <label for="amountUpdate" class="label">Amount</label>
                         <input id="amountUpdate" type="text" class="inputupdatedel" data-type="float" name="amountUpdate1" value="${amountUpdate}"
-                               onkeypress="return isNumber(event)">
+                               placeholder="0.0" onkeypress="return isNumber(event)">
                     </div>
                 </div>
                 </div>
@@ -388,6 +396,9 @@
         </div>
 
     </div>
+<div class="copyright" >copyright©ibrahim Alolofi
+</div>
+
 </div>
 
 
@@ -403,6 +414,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="alert/dist/sweetalert-dev.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script src="http://code.jquery.com/jquery-latest.js "></script>
 
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
