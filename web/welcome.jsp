@@ -132,7 +132,7 @@
                     </div>
                 </form>
                 <br>
-                <div class="welcome2"><a href="#transferLog"> Transaction Logs </a> </div>
+                <div class="welcome2"><a href="#transferLog"  > Transaction Logs </a> </div>
             </div>
 
 
@@ -145,9 +145,13 @@
 
 
 <%--table of transactions--%>
-<div class="container-table100">
-    <div class="wrap-table100">
-        <div class="table100 ver1 m-b-110">
+
+        <div  id="refreshtransaction">
+            <div id="transactions">
+
+                <div class="container-table100" >
+                    <div class="wrap-table100"  >
+        <div class="table100 ver1 m-b-110" >
             <div class="table100-head" id="transferLog">
                 <table>
                     <thead>
@@ -161,9 +165,9 @@
                 </table>
             </div>
 
-            <div class="table100-body js-pscroll">
+            <div class="table100-body js-pscroll" >
                 <table>
-                    <tbody>
+                    <tbody >
                     <%
                         // Here we have to use the the list of all the transactions of the client has made, auto-reload from database
                             String DATE_FORMATTER = "yyyy-MM-dd ' at ' HH:mm:ss";
@@ -198,8 +202,8 @@
     <center><a href="#up"class="button"> up </a></center>
 </div>
 
-
-
+            </div>
+        </div>
 
 <!--===============================================================================================-->
 <script src="contents/vendor/jquery/jquery-3.2.1.min.js"></script>

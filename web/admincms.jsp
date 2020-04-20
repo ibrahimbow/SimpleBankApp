@@ -72,12 +72,12 @@
             <nav>
 
 
-                <a  onclick="showPanel(0,'#')"><i class="fa fa-home fa-fw icon"></i><br>Home</a>
-                <a  onclick="showPanel(1,'#')"><i class="fas fa-users icon"></i><br> Clients Info</a>
-                <a onclick="showPanel(2,'#')"><i class=" fas fa-user-plus icon"></i><br>Add New Client</a>
-                <a onclick="showPanel(3,'#')"><i class="fas fa-users-cog icon"></i><br>Edit & Delete</a>
-                <a onclick="showPanel(4,'#')"><i class="fas fa-exchange-alt icon"></i><br> Transactions</a>
-                <a onclick="showPanel(5,'#')"><i class="fas fa-history icon"></i><br>Logs</a>
+                <a  onclick="showPanel(0,'#2b9cd2')"><i class="fa fa-home fa-fw icon"></i><br>Home</a>
+                <a  onclick="showPanel(1,'#2b9cd2')"><i class="fas fa-users icon"></i><br> Clients Info</a>
+                <a onclick="showPanel(2,'#2b9cd2')"><i class=" fas fa-user-plus icon"></i><br>Add New Client</a>
+                <a onclick="showPanel(3,'#2b9cd2')"><i class="fas fa-users-cog icon"></i><br>Edit & Delete</a>
+                <a onclick="showPanel(4,'#2b9cd2')"><i class="fas fa-exchange-alt icon"></i><br> Transactions</a>
+                <a onclick="showPanel(5,'#2b9cd2')"><i class="fas fa-history icon"></i><br>Logs</a>
 
             </nav>
             </CENTER>
@@ -86,6 +86,7 @@
     </div>
     <div class="right_content-html">
 
+        <%-- home--%>
         <div class="tabPanel"> <br><br><br><br><br><Br> Welcome to control panel
             <br><br>
 

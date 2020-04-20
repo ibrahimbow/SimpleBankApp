@@ -358,11 +358,11 @@ function transaction_money() {
 						xmlHttpRequest.onload = function () {
 							var s = xmlHttpRequest.responseText.trim();
 							if (s === '' || s === null) {
-								// swal("Not updated");
+								//
 							} else {
-								// swal("Client is Deleted");
 								document.getElementById("amountx").value = '';
 								document.getElementById("bankAccountNumberId").value = '';
+								$('#refreshtransaction').load(location.href + ' #transactions');
 
 							}
 						};
