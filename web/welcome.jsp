@@ -104,7 +104,7 @@
 
                 <hr style="line-break: auto; height: 0.2px; background-color: #b1b3b6 " />
 
-            <div class="welcome">Transaction money </div>
+            <div class="welcome">Money Transaction</div>
             <div class="login-form">
 <%--                <form action="transferMoney" method="post" name="sendMoney" onchange="manage(this)" onkeypress="return isNumber(event)">--%>
                     <form onchange="manage(this)" onkeypress="return isNumber(event)">
