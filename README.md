@@ -4,7 +4,7 @@ Welcome to mymweb
 
 
 Idea:
-Money Transaction: The client can have an account and be able to send the money to another account.
+Money Transaction: The client can have an account and be able to send the money to another account and receive money
 
 Purpose:
 Build web application with java language and implementing the following structures:
@@ -88,8 +88,19 @@ Frontend
 
 DATABASE:
 
+you have to insert admin and type of transaction manually
+please insert these aql statments to be able to use the web application
 
-ER Diagram
+Transaction type is fixed
+insert into transaction_types(id_transactionType, transaction_type)
+values (99,'Withdraw'),
+       (66,'Deposit');
+
+here you can change the admin name or password as you wish
+insert into administrator(admin_name, admin_password)
+values ('asd','asd');
+
+
 
 
 
@@ -230,6 +241,6 @@ Logs
 View all log for all the clients that they login in web application
 
 
-14
+14page
 
 
