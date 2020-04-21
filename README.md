@@ -4,7 +4,7 @@ Welcome to mymweb
 
 
 Idea:
-Money Transaction: The client can have an account and be able to send the money to another account.
+Money Transaction: The client can have an account and be able to send the money to another account and receive money
 
 Purpose:
 Build web application with java language and implementing the following structures:
