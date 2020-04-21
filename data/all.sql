@@ -76,3 +76,11 @@ create table transactions
         foreign key (account_id_account) references accounts (id_account)
 );
 
+insert into transaction_types(id_transactionType, transaction_type)
+values (99,'Withdraw'),
+       (66,'Deposit');
+
+insert into administrator(admin_name, admin_password)
+values ('asd','asd');
+
+
