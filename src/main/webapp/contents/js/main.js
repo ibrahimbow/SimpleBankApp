@@ -30,7 +30,7 @@ function check_email() {
 	var e = document.forms["myformReg"]["email"].value;
 	if(document.getElementById("email").value !== ""){
 		var http = new XMLHttpRequest();
-		http.open("POST", "http://localhost:8090/myweb_war_exploded/checkemail.jsp", true);
+		http.open("POST", "https://bbgmywebapp.herokuapp.com/checkemail.jsp", true);
 		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		var paramz = "param3=" + e;
 		http.send(paramz);
@@ -50,7 +50,7 @@ function check_email_update_delete() {
 	var e = document.forms["myform_update_delete"]["emailUD"].value;
 	if(document.getElementById("emailUD").value !== ""){
 		 var http = new XMLHttpRequest();
-		http.open("POST", "http://localhost:8090/myweb_war_exploded/checkemail.jsp", true);
+		http.open("POST", "https://bbgmywebapp.herokuapp.com/checkemail.jsp", true);
 		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		var paramz = "param3=" + e;
 		http.send(paramz);
@@ -72,7 +72,7 @@ function checkUserNameLogin() {
 
 	if(document.getElementById("loginUser").value !== ""){
 		var http = new XMLHttpRequest();
-		http.open("POST", "http://localhost:8090/myweb_war_exploded/checkuser.jsp", true);
+		http.open("POST", "https://bbgmywebapp.herokuapp.com/checkuser.jsp", true);
 		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		var params = "param2=" + n;
 		http.send(params);
@@ -95,7 +95,7 @@ function check_username() {
 	if (document.getElementById("myuserReg").value !== "") {
 
 		var http = new XMLHttpRequest();
-		http.open("post", "http://localhost:8090/myweb_war_exploded/checkuser.jsp", true);
+		http.open("post", "https://bbgmywebapp.herokuapp.com/checkuser.jsp", true);
 		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		var params = "param2=" + n;
 		http.send(params);
@@ -120,7 +120,7 @@ function check_username_update_delete() {
 	if (document.getElementById("myuserUD").value !== "") {
 
 		var http = new XMLHttpRequest();
-		http.open("post", "http://localhost:8090/myweb_war_exploded/checkuser.jsp", true);
+		http.open("post", "https://bbgmywebapp.herokuapp.com/checkuser.jsp", true);
 		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		var params = "param2=" + n;
 		http.send(params);
@@ -205,7 +205,7 @@ function checkAccountNumber() {
 
 	if(document.getElementById("bankAccountNumberId").value !== ""){
 		var http = new XMLHttpRequest();
-		http.open("POST", "http://localhost:8090/myweb_war_exploded/checkaccountnumber.jsp", true);
+		http.open("POST", "https://bbgmywebapp.herokuapp.com/checkaccountnumber.jsp", true);
 		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		var paramz = "param4=" + e;
 		http.send(paramz);
@@ -234,7 +234,7 @@ function searchAccountNumber() {
 	if(document.getElementById("number1").value !== ""){
 		var http = new XMLHttpRequest();
 		// http.open("POST", "/Search", true); why it doesn't work ?????
-		http.open("POST", "http://localhost:8090/myweb_war_exploded/updateCode.jsp", true);
+		http.open("POST", "https://bbgmywebapp.herokuapp.com/updateCode.jsp", true);
 		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		var paramz = "param4=" + res;
 		http.send(paramz);
