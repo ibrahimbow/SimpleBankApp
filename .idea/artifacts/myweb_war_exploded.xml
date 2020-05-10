@@ -35,6 +35,7 @@
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.18" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.6.1" />
           <element id="library" level="project" name="Maven: org.webjars:jquery:3.4.0" />
+          <element id="library" level="project" name="Maven: com.heroku.sdk:heroku-jdbc:0.1.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">
