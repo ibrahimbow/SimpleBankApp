@@ -1,18 +1,13 @@
-<%@ page import="java.io.PrintWriter" %>
 <%@ page import="be.intecbrussel.controller.MyController" %>
-
+<%@ page import="java.io.PrintWriter" %>
 <%
+
+
     MyController myController = new MyController();
-    String user = request.getParameter("param2");
+
+    String email = request.getParameter("param3");
     try {
-        // check in the admin data users
-        if( myController.checkAdminUserName(user)!=null){
-            response.setContentType("text/html");
-            PrintWriter outt = response.getWriter();
-            outt.print("Already Exists");
-        }
-        // check in the client data users
-         else if(myController.checkUserName(user)!=null) {
+        if (myController.checkEmail(email)!=null) {
             response.setContentType("text/html");
             PrintWriter outt = response.getWriter();
             outt.print("Already Exists");
@@ -25,6 +20,5 @@
     } catch (Exception b) {
         b.getMessage();
     }
-
 
 %>

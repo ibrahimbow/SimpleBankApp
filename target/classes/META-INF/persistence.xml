@@ -8,9 +8,16 @@
 <!--        <class>be.intecbrussel.entity.Client</class>-->
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bank_db?serverTimezone=UTC" />
-            <property name="javax.persistence.jdbc.user" value="root" />
-            <property name="javax.persistence.jdbc.password" value="bbg402_BBG" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://us-cdbr-east-06.cleardb.net:3306/heroku_5ed7d5988732eeb?reconnect=true" />
+            <property name="javax.persistence.jdbc.user" value="b2e7fbd5135b03" />
+            <property name="javax.persistence.jdbc.password" value="558a160a" />
+
+
+
+<!--            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />-->
+<!--            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bank_db?serverTimezone=UTC" />-->
+<!--            <property name="javax.persistence.jdbc.user" value="root" />-->
+<!--            <property name="javax.persistence.jdbc.password" value="bbg402_BBG" />-->
 
 <!--            <property name="hibernate.hbm2ddl.auto" value="create"/>-->
 <!--            <property name="hibernate.show_sql" value="true"/>-->

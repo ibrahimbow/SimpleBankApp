@@ -2,8 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="be.intecbrussel.controller.MyController" %>
 <%@ page import="be.intecbrussel.entity.TransactionsLog" %>
-<%@ page import="java.util.List" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.util.List" %>
 
 
 <%--

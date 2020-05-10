@@ -1,5 +1,5 @@
-<%@ page import="java.io.PrintWriter" %>
 <%@ page import="be.intecbrussel.controller.MyController" %>
+<%@ page import="java.io.PrintWriter" %>
 
 <%
     MyController myController = new MyController();

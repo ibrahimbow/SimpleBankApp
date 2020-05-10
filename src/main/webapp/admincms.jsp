@@ -1,15 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ page import="be.intecbrussel.controller.MyController" %>
-<%@ page import="be.intecbrussel.entity.Client" %>
-<%@ page import="java.util.List" %>
 <%@ page import="be.intecbrussel.entity.Account" %>
-<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="be.intecbrussel.entity.Client" %>
 <%@ page import="be.intecbrussel.entity.TransactionsLog" %>
-<%@ page import="be.intecbrussel.entity.LogFile" %>
-<%@ page import="java.util.stream.Collectors" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Objects" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
   User: HP6730b
