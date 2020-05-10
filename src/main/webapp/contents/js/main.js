@@ -350,7 +350,7 @@ function transaction_money() {
 	};
 
 	// we use sweetalert in order to confirm sending money before you say ohhh :)
-	if (to_BankAccount !== "") {
+	if (to_BankAccount !== "" && amountToSend!==0) {
 		swal({
 			title: 'Are you sure?',
 			text: " you want to send € " + amountToSend + " to account number " + to_BankAccount,
